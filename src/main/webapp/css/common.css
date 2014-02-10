@@ -1,0 +1,82 @@
+@CHARSET "UTF-8";
+/* global  */
+body, p, ul, ol, li, dl, dt, dd, input, textarea, button, form, select, option, span {
+    margin: 0px;
+    padding: 0px;
+    font-family: Microsoft Yahei, Arial;
+    font-size: 12px;
+}
+
+html, body {
+    height: 100%;
+    min-width: 1024px;
+}
+
+
+h1, h2, h3, h4, h5, h6 {
+    font-size: 100%;
+    font-weight: normal;
+}
+
+/**
+input[type="text"], input[type="password"], input[type="number"], input[type="search"], input[type="email"], input[type="url"], textarea {
+    -moz-box-sizing: border-box;
+}
+
+input, select {
+    line-height: 15px;
+    min-height: 23px;
+}
+
+
+td, textarea, input, select, button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+}*/
+
+.clear {
+    clear: both;
+}
+
+.clearfix:after {
+    content: ".";
+    display: block;
+    visibility: hidden;
+    clear: both;
+    height: 0px;
+}
+.clearfix {
+    _zoom: 1;
+}/* for IE/Mac */
+
+.clearflow {
+    background-color: rgba(0, 0, 0, 0);
+    border: 0 none;
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+    line-height: 0;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.none {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+}

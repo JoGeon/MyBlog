@@ -1,0 +1,520 @@
+@CHARSET "UTF-8";
+#headerbanner {
+    background-color: #2DAEBF;
+}
+
+#headerbanner .titlebanner {
+    height: 160px;
+}
+
+.welcomepic {
+    background: url("/img/welcome.png") no-repeat scroll 20px 10px transparent;
+    height: 136px;
+}
+
+.titlebanner p{
+    background: none repeat scroll 0 0 #FFFFFF;
+    border-radius: 4px;
+    color: #6FA5DB;
+    font-weight: bold;
+    font-size : 16px;
+    text-align: center;
+    opacity: 0.5;
+    padding: 10px;
+    margin-top: 100px;
+    width: 300px;
+}
+
+#headerbanner .navbar {
+    background-color: #F4F4F4;
+}
+
+.search {
+    padding: 3px;
+}
+
+.navbar input {
+    background: #fff;
+    border: 1px #ccc solid;
+    border-right: none;
+    height: 30px;
+    border-radius: 5px 0 0 5px;
+    padding: 0 10px;
+    height: 30px;
+    width: 189px;
+    float: left;
+}
+
+.navbar button {
+    border: 1px #ccc solid;
+    border-left: none;
+    border-radius: 0 5px 5px 0;
+    padding: 0;
+    margin: 0;
+    width: 40px;
+    height: 32px;
+}
+
+.navbar button:hover {
+    color: #0099CC;
+}
+
+.navbar button:active {
+
+}
+
+.wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.navbar ul {
+    list-style-type: none;
+}
+
+.navbar ul li {
+    float: left;
+}
+
+.navbar a {
+    display: block;
+    font-size: 16px;
+    width: 150px;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 36px;
+    color: #666;
+    text-decoration: none;
+}
+
+.navbar  a:link {
+    color: #666;
+    text-decoration: none;
+}
+
+.navbar a:hover {
+    color: #0099CC;
+    border-bottom: 2px solid #0CA3D2;
+    background-color: #D3E4F1;
+}
+
+.navbaractive {
+    color: #0099CC;
+    border-bottom: 2px solid #0CA3D2;
+    background-color: #D3E4F1;
+}
+
+.navbar a:focus {
+    outline: none;
+}
+
+/*文章列表 */
+#articlecontent, #about{
+    /*min-height: 100%;*/
+    /*height: auto;*/
+    /*position: relative;*/
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -60px;/*margin-bottom的负值等于footer高度*/
+}
+
+.push {
+    height: 60px;
+    clear:both;
+}
+
+/*文章列表左边     box-shadow: 3px 3px 3px 3px #0099CC;*/
+.articleleft {
+    width: 720px;
+    margin-right: 20px;
+    float: left;
+    padding-top: 20px;
+}
+
+.content {
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #eee;
+}
+
+.content .tit {
+    border-bottom: 1px solid #2DAEBF;
+    padding: 20px 40px 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.content .tit h1 {
+    font-weight: bold;
+}
+
+.content .comment {
+    font-size: 14px;
+}
+
+.content a {
+    text-decoration: none;
+    color: #2A85A1;
+}
+
+.content a:hover {
+    text-decoration: underline;
+    color :#0CA3D2;
+}
+
+.content a:active {
+    text-decoration: underline;
+    color: #2A85A1;
+}
+
+
+.text {
+    padding: 20px 40px;
+    min-height: 120px;
+}
+
+.text span {
+    font-size: 14px;
+}
+
+.content .text .infor_tag {
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+.content .info {
+    background: #e0e0e0;
+    border-bottom: 1px solid #eff4f7;
+    padding: 10px 40px 10px 40px;
+    border-radius: 0 0 5px 5px;
+}
+
+.comment_info a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+/*文章列表右边 */
+.articleright {
+    width: 210px;
+    float: right;
+    padding: 22px;
+    margin-bottom: 20px;
+    background-color: #F4F4F4;
+}
+
+.articleright h3 {
+    font-size: 18px;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 5px 10px;
+    font-weight: bold;
+    color: #666;
+    background-color: #2DAEBF;
+    border: 2px #ddd solid;
+}
+
+.articleright .category {
+    font-size: 14px;
+    line-height: 16px;
+    margin-bottom: 30px;
+}
+
+.articleright .category a {
+    color: #999;
+    display: block;
+    border-bottom : 1px dashed #006600;
+    padding: 6px 8px;
+    margin-bottom: 5px;
+    font-weight: 400;
+    overflow: hidden;
+    text-decoration: none;
+}
+
+.articleright .category a:hover {
+    color: #666;
+    text-decoration: none;
+    background-color: #2DAEBF;
+    border-radius: 2px;
+}
+
+.articleright .category a span {
+    border-left: 1px solid #000088;
+    display: block;
+    float: right;
+    margin: -5px 0 -5px 5px;
+    padding: 6px 5px;
+    text-align: center;
+    width: 30px;
+}
+
+.articlecon .content .info {
+    background: none;
+    border: none;
+    margin-top: -10px;
+}
+
+/*热门文章*/
+.hotarticle {
+    margin-left: 3px;
+}
+
+.article_hot {
+    font-size: 14px;
+    padding: 2px;
+}
+
+.article_hot a {
+    text-decoration: none;
+    color:  #999;
+}
+
+/*文章评论CSS*/
+
+#comments {
+    height: auto;
+}
+
+.article_comments {
+    background-color: #eee;
+    margin-bottom: 20px;
+    width: 720px;
+    border-radius: 5px;
+    float: left;
+}
+
+#commentLevel {
+    font-size: 15px;
+    color: #c67605;
+    padding: 2px;
+    word-spacing: 3px;
+}
+
+#commentName {
+    font-size: 16px;
+    color: cornflowerblue;
+    word-spacing: 2px;
+}
+
+.comment_info {
+    padding: 6px;
+    background-color: #d0e9c6;
+}
+
+.comment_content {
+    min-height: 60px;
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.response_comment {
+    padding: 10px;
+}
+
+.article_comment_title {
+    width: 100%;
+    line-height: 32px;
+    display: block;
+    color: #737373;
+    font-size: 18px;
+    padding: 3px 0;
+    text-indent: 15px;
+    border-bottom: 1px solid darkgray;
+}
+
+.response_comment_input {
+    display: block;
+    width: 450px;
+    float: left;
+    height: 30px;
+    margin-top: 10px;
+}
+
+.res_comment_title {
+    width: 80%;
+    line-height: 32px;
+    display: block;
+    color: #737373;
+    font-size: 18px;
+    padding: 3px 0;
+    text-indent: 15px;
+    border-bottom: 1px solid darkgray;
+}
+
+#comment-author-info label {
+    display: block;
+    width: 60px;
+    float: left;
+    height: 30px;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.comment_input {
+    width: 200px;
+    height: 23px;
+    float: left;
+    margin-top: 3px;
+}
+
+.comment_main {
+    min-width: 510px;
+    min-height: 130px;
+    margin: 10px 0 10px 0;
+}
+
+
+/*文章分类CSS*/
+#articleType {
+    height: auto;
+    position: relative;
+}
+
+.articleCategory {
+    width: 720px;
+    background-color: #F4F4F4;
+    float: left;
+    margin-top: 20px;
+}
+
+.articleCategory a {
+    text-decoration: none;
+}
+
+.articleCategory a:hover {
+    text-decoration: underline;
+}
+
+.articleCategory li {
+    list-style-type: none;
+    margin: 6px 0;
+}
+
+.article_type_level1 {
+    margin: 20px;
+    min-height: 300px;
+}
+
+.article_type_level2 {
+    margin-left: 26px;
+}
+
+.type_name {
+    font-size: 16px;
+    padding: 5px;
+    border-bottom: 1px dashed #008080;
+}
+
+.type_content {
+    font-size: 13px;
+    padding: 2px;
+    border-bottom: 1px dashed #008080;
+}
+
+.article_count {
+    padding: 3px 10px;
+    background-color: #4bc4ec;
+    float: right;
+}
+
+.arrow {
+    margin: 6px;
+    cursor: pointer;
+}
+
+.right_arrow {
+    width: 0;
+    height: 0;
+    border-top: 5px solid transparent;
+    border-left: 10px solid #f66;
+    border-bottom: 5px solid transparent;
+}
+
+.left_arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #f66;
+}
+
+.bottom_arrow {
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 10px solid #f66;
+}
+
+.pagination {
+    width: 720px;
+    text-align: center;
+    position: relative;
+}
+
+.pagination, .pageNav {
+    display: inline-block;
+}
+
+.pagination li {
+    text-decoration: none;
+    list-style-type: none;
+    float: left;
+    display: inline;
+    float: left;
+    font-size: 13px;
+    line-height: 23px;
+    margin-right: 5px;
+    background-color: #008080;
+    color: #EAF2FA;
+}
+
+
+.pagination li a {
+    border: 1px solid #CCCCCC;
+    display: block;
+    font-family: Arial,SimSun;
+    padding: 0 8px;
+    color: #d8fffa;
+}
+
+.pageactive, .pagination li a:hover {
+    border: 1px solid #CCCCCC;
+    background-color: #737f80;
+}
+
+.pagination span {
+    margin: 0 6px;
+}
+
+.pagination a {
+    text-decoration: none;
+}
+
+
+.footer .footerbanner {
+    position: absolute;
+    bottom: 0;
+}
+
+.footerbanner {
+    background: url("/img/global_bg.jpg") repeat center center;
+    widthi: 100%;
+    margin: 10px 0 0 0;
+    clear:both;
+}
+
+.footer_resize {
+    margin: 0 auto;
+    padding: 40px 20px  0 20px;
+    width: 1000px;
+}
+
+.footerbanner p.lf {
+    margin: 0;
+    padding: 4px 0;
+    width: auto;
+    line-height: 1.5em;
+    font-size: 16px;
+}

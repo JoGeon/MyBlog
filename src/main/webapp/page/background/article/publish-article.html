@@ -1,0 +1,41 @@
+<div class="form">
+	<div class="articletitle">
+		<label>标题：</label>
+		<input type="text"  id= "articleTitle"  name="inputarticletitle">
+	</div>
+	<div class="articlelink">
+		<label>链接：</label>
+		<input type="text"  id= "articleLink"  name="inputarticlelink">
+	</div>
+	<div id="editor">
+		<textarea id="editor_id" name="content" class="hidden"></textarea>
+		<input type="hidden" id="IDNum" value="-1"/>
+	</div>
+	
+	   <div class="articletag">
+            <label>选择标签（使用英文输入状态下的逗号进行分隔）：</label> 
+            <input type="text" id="articletags" name="tags">
+        </div>
+	
+	<div class="articlecategory">
+		<label>选择分类：</label>
+		<select id="category">
+				<option value="0" selected="selected">选择分类</option>
+		</select> 
+		
+		<label>添加分类：</label>
+		<input type="text" id="articleTypeName" name="categoryname">
+		<label>分类描述：</label>
+		<input type="text" id="articleTypeDescription" name="categoryDescription">
+		<button id="addcategory">添加分类</button>
+	</div>
+	
+	<div class="pulishbutton right">
+		<input type="button"  id="saveArticle"  name="saveArticlebutton" value="保存" />
+		<input type="button" id="publishArticle" name="publishArticlebutton" value="发布" />
+	</div>
+	
+	<div class="bottom clearflow"></div>
+</div>
+
+

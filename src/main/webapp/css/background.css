@@ -1,0 +1,432 @@
+@CHARSET "UTF-8";
+#loading {
+    font-weight: bold;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 2px 0;
+    position: fixed;
+    text-align: center;
+    top: 5px;
+    width: 100%;
+    z-index: 2;
+}
+
+#msg {
+    font-weight: bold;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 2px 0;
+    position: fixed;
+    text-align: center;
+    top: 5px;
+    width: 100%;
+    z-index: 2;
+}
+
+#topPanel {
+    background-color: #2DAEBF;
+    border-top: 2px #2DAEBF solid;
+    border-bottom: 2px #2DAEBF solid;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.top_left {
+    margin: 0;
+    padding: 6px;
+    display: inline;
+    background-color: #004E8B;
+    border-radius: 0 10px 10px 0;
+}
+
+/*
+ a:link，定义正常链接的样式；
+ a:visited，定义已访问过链接的样式；
+ a:hover，定义鼠标悬浮在链接上时的样式；
+ a:active，定义鼠标点击链接时的样式。
+ */
+.top_right a {
+    padding: 6px;
+}
+
+.top_right a:link {
+    text-decoration: none;
+    color: #FFFFFF;
+}
+
+.top_right a:hover {
+    border-radius: 2px;
+    background: #004E8B;
+}
+
+.top_right a:active {
+    color: #D45500;
+}
+
+.top_right {
+    float: right;
+}
+
+#allPanel {
+    height: auto;
+    min-height: 100%;
+    position: relative;
+}
+
+#adminmenu {
+    background-color: #ECECEC;
+    border-radius: 0 5px 5px 0;
+    border-right: 1px solid #CCCCCC;
+    border-top: 1px solid #DDDDDD;
+    bottom: 0;
+    box-shadow: 6px 0 6px #ECECEC;
+    min-height: 468px;
+    padding: 15px 0;
+    position: absolute;
+    top: 58px;
+    width: 145px;
+}
+
+#adminmenu a {
+    color: #004E8B;
+    display: block;
+    text-decoration: none;
+}
+
+#adminmenu > ul > li > div > a.tab-current {
+    background-color: #0099CC;
+    border-bottom: 1px solid #6d6d6d;
+    border-top: 1px solid #808080;
+    color: #fff;
+    margin-left: -12px;
+    padding-left: 12px;
+    text-shadow: 0 -1px 0 #333;
+}
+
+#menu_main, #menu_article, #menu_comment-list, #menu_about {
+    font-size: 16px;
+    padding-left: 12px;
+}
+
+#adminmenu .menu_content {
+    background-color: #E5EDF3;
+    text-align: center;
+}
+
+.menu_content li {
+    font-size: 13px;
+    list-style-type: none;
+}
+
+.menu_content .tab-current {
+    background-color: #D3E4F1;
+    color: #333333;
+    font-weight: bold;
+}
+
+.menu_content li a:hover {
+    margin-left: -12px;
+    padding-left: 12px;
+    background-color: #D3E4F1;
+}
+
+#Panel {
+    margin: 30px 0 0 162px;
+    padding: 0 12px 20px 12px;
+}
+
+#Panel a {
+    text-decoration: none;
+}
+
+.subsubsub {
+    float: left;
+    list-style: none outside none;
+    margin: 8px 0 5px;
+    padding: 0;
+}
+
+.subsubsub li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    white-space: nowrap;
+}
+
+#serach {
+    float: right;
+}
+
+#serach input[name='seracharticle' ] {
+    height: 1.8em;
+    margin: 0 4px 0 0;
+    border-color: #DFDFDF;
+    background-color: #FFFFFF;
+    color: #333333;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3px 3px 3px 3px;
+    border-style: solid;
+    border-width: 1px;
+}
+
+#serach .button {
+    background: linear-gradient(to bottom, #FEFEFE, #F4F4F4) repeat scroll 0 0 #F3F3F3;
+    border-color: #BBBBBB;
+    color: #333333;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.button {
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 13px;
+    height: 24px;
+    line-height: 23px;
+    margin: 0;
+    padding: 0 10px 1px;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.articletab {
+    width: 100%;
+    font-size: 16px;
+    table-layout: fixed;
+}
+
+.articletab th {
+    font-size: 14px;
+    line-height: 1.3em;
+    padding: 7px 7px 8px;
+    text-align: left;
+}
+.articletab td, .widefat th {
+    border-style: solid;
+    border-width: 1px 0;
+}
+
+tbody tr:nth-child(even) {
+    background: #DBECF4;
+}
+
+.articletab .row-action {
+    cursor : pointer;
+    visibility: visible;
+}
+
+.articletab .edit  span{
+    visibility: hidden;
+}
+
+.tabnavgate {
+
+}
+
+/**
+ *     发布文章CSS
+ */
+.form > div {
+    margin: 12px 0;
+}
+
+/**
+ *     文章标题，链接，标签
+ */
+.articletitle input, .articlelink input, .articletag input {
+    width: 100%;
+}
+
+/**
+ *     文章分类和标签
+ */
+
+.articlecategory input {
+    width: 160px;
+}
+
+.articlecategory select {
+    width: 100px;
+}
+
+.bottom {
+    height: 30px;
+}
+
+.pulishbutton {
+    margin: 10px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 10px;
+    padding: 10px 0 0 0;
+    width: 100%;
+    text-align: center;
+    color: #004E8B;
+}
+
+/*登录界面*/
+.container {
+    margin: 100px auto;
+}
+
+.login {
+    position: relative;
+    margin: 0 auto;
+    padding: 20px 20px 20px;
+    width: 310px;
+}
+
+.login p.submit {
+    text-align: right;
+}
+
+.login-help {
+    margin: 20px 0;
+    font-size: 11px;
+    color: white;
+    text-align: center;
+    text-shadow: 0 1px #2a85a1;
+}
+
+.login-help a {
+    color: #cce7fa;
+    text-decoration: none;
+}
+
+.login-help a:hover {
+    text-decoration: underline;
+}
+
+:-moz-placeholder {
+    color: #c9c9c9 !important;
+    font-size: 13px;
+}
+
+::-webkit-input-placeholder {
+    color: #ccc;
+    font-size: 13px;
+}
+
+.login:before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+}
+
+.login h1 {
+    margin: -20px -20px 21px;
+    line-height: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: #555;
+    text-align: center;
+    text-shadow: 0 1px white;
+    border-bottom: 1px solid #cfcfcf;
+    border-radius: 3px 3px 0 0;
+    background: #f3f3f3 linear-gradient(to bottom,whiteffd, #eef2f5);
+    box-shadow: 0 1px whitesmoke;
+}
+
+.login p {
+    margin: 20px 0 0;
+}
+
+.login p:first-child {
+    margin-top: 0;
+}
+
+.login input[type=text], .login input[type=password] {
+    width: 278px;
+}
+
+.login p.remember_me {
+    float: left;
+    line-height: 31px;
+}
+
+.login p.remember_me label {
+    font-size: 12px;
+    color: #777;
+    cursor: pointer;
+}
+
+.login p.remember_me input {
+    position: relative;
+    bottom: 1px;
+    margin-right: 4px;
+    vertical-align: middle;
+}
+
+.container  input {
+    font-family: 'Lucida Grande', Tahoma, Verdana, sans-serif;
+    font-size: 14px;
+}
+
+.container input[type=text], input[type=password] {
+    margin: 5px;
+    padding: 0 10px;
+    height: 34px;
+    color: #404040;
+    background: white;
+    border: 1px solid;
+    border-color: #c4c4c4 #d1d1d1 #d4d4d4;
+    border-radius: 2px;
+    outline: 5px solid #eff4f7;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.container  input[type=text]:focus, input[type=password]:focus {
+    border-color: #7dc9e2;
+    outline-color: #dceefc;
+    outline-offset: 0;
+}
+
+.container  input[type=submit] {
+    padding: 0 18px;
+    height: 29px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #527881;
+    text-shadow: 0 1px #e3f1f1;
+    background: #cde5ef;
+    border: 1px solid;
+    border-color: #b4ccce #b3c0c8 #9eb9c2;
+    border-radius: 16px;
+    outline: 0;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    background-image: -webkit-linear-gradient(top, #edf5f8, #cde5ef);
+    background-image: -moz-linear-gradient(top, #edf5f8, #cde5ef);
+    background-image: -o-linear-gradient(top, #edf5f8, #cde5ef);
+    background-image: linear-gradient(to bottom, #edf5f8, #cde5ef);
+    -webkit-box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+    box-shadow: inset 0 1px white, 0 1px 2px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+}
+
+.container  input[type=submit]:active {
+    background: #cde5ef;
+    border-color: #9eb9c2 #b3c0c8 #b4ccce;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+.loginPage{
+    font: 13px/20px "Lucida Grande", Tahoma, Verdana, sans-serif;
+    color: #404040;
+    background: #0ca3d2;
+    height: auto;
+}
