@@ -18,9 +18,10 @@ catch(e){
 
 $(document).ready(function() {
 
-    $('#submit').on('click', function() {
+    if( this.comment ) {
         comment.FsubmitComment();
-    });
+        comment.FinitOnClick();
+    }
 
     $('.arrow').on('click', function() {
         if($(this).is(".right_arrow")) {

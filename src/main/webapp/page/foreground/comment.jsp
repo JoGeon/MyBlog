@@ -13,12 +13,11 @@
                         <span id="commentLevel"><s:property value="commentLevel"/></span>楼
                         <span id="commentName"><s:property value="commentName"/></span>
                         <span>[<s:date name="commentTime" format="yyyy-MM-dd  HH:mm"/>]说：</span>
-                        <a class="recomment" href="#">回复</a>
-                        <a class="quotecomment" href="#">引用</a>
+                        <a class="recomment" href="#comment-text">回复</a>
                     </div>
 
                     <div class="comment_content" id="com_content">
-                        <s:property value="commnetContent"/>
+                         <s:property value="commnetContent" escapeHtml="false"/>
                     </div>
                 </s:iterator>
 
@@ -43,7 +42,7 @@
                                 </div>
                             </div>
 
-                            <div class="comment_textarea">
+                            <div id="comment-text">
                                 <label for="comment"></label><textarea name="w" id="comment" tabindex="4" class="comment_main"></textarea>
                                 <div id="loading" style="display: none;"> 正在提交, 请稍候...</div>
                                 <div id="error" style="display: none;">#</div>

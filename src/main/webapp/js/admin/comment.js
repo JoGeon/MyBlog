@@ -27,7 +27,7 @@ var comment = function () {
                     "commentName": author,
                     "commentEmial": email,
                     "commentURL": url,
-                    "commnetContent": comment,
+                    "commnetContent": comment
                 },
                 "articleID": $("#article_ID").text()
             };
@@ -46,26 +46,44 @@ var comment = function () {
                             '<span id="commentLevel">' + data.comment.commentLevel + '</span>楼' +
                             '<span id="commentName">' + data.comment.commentName + '</span>' +
                             '<span> [' + data.comment.commentTime +']说：</span>' +
-                            '<a class="recomment" href="#">回复</a> <a class="quotecomment" href="#">引用</a> </div>' +
+                            '<a class="recomment" href="#comment-text">回复</a></div>' +
                             '<div class="comment_content" id="com_content">' + data.comment.commnetContent +
                             '</div>');
+                        //把评论内容置空
+//                        initOnClick();
+                        $("#comment").text("");
+
                         alert("评论成功！");
                     } else {
                         alert(data.resultMessage);
                     }
+
                 }).fail(function () {
-                    console.log("save comment erroe");
+                    console.log("save comment error");
                 });
         }
     }
 
-    function commentPage() {
-
+    function initOnClick() {
+        $('.recomment').on( 'click' , function() {
+            comment.FquoteComment($(this));
+        });
     }
 
-    function quoteComment() {
-        var comments = $("#com_content").text();
-        alert(comments);
+    function submitOnClick() {
+        $('#submit').on('click', function() {
+            comment.FsubmitComment();
+        });
+    }
+
+    function quoteComment(jComment) {
+        var commentName = jComment.parent().find("#commentName").text().trim();
+//        var commentContent = jComment.parent().next().html().trim();
+        var  commentLevel = jComment.parent().find("#commentLevel").text().trim();
+        var quoteContent ="<blockquote>\r\n" +
+            "<pre>回复 <span class='commentlevel'> " +commentLevel+"楼</span>"+commentName + "：</pre>\r\n"
+             + "</blockquote>" ;
+        $("#comment").text(quoteContent);
     }
 
     /**
@@ -92,6 +110,9 @@ var comment = function () {
 
 
     return {
-        FsubmitComment : submitComment
+        FsubmitComment : submitComment,
+        FquoteComment : quoteComment,
+        FinitOnClick : initOnClick,
+        FsubmitOnClick : submitOnClick
     };
 }();
