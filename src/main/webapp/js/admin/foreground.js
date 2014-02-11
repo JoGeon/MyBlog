@@ -18,8 +18,8 @@ catch(e){
 
 $(document).ready(function() {
 
-    if( this.comment ) {
-        comment.FsubmitComment();
+    if( typeof comment  != "undefined") {
+        comment.FsubmitOnClick();
         comment.FinitOnClick();
     }
 
@@ -33,7 +33,9 @@ $(document).ready(function() {
         }
     });
 
-    Util.ChangeActive();
+    if(typeof Util  != "undefined") {
+        Util.ChangeActive();
+    }
 
     $(document).ajaxStart(function() {
         $('#loading').show();

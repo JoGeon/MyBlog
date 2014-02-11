@@ -49,10 +49,8 @@ var comment = function () {
                             '<a class="recomment" href="#comment-text">回复</a></div>' +
                             '<div class="comment_content" id="com_content">' + data.comment.commnetContent +
                             '</div>');
-                        //把评论内容置空
-//                        initOnClick();
-                        $("#comment").text("");
 
+                        $("#comment").val("");
                         alert("评论成功！");
                     } else {
                         alert(data.resultMessage);
@@ -66,13 +64,13 @@ var comment = function () {
 
     function initOnClick() {
         $('.recomment').on( 'click' , function() {
-            comment.FquoteComment($(this));
+            quoteComment($(this));
         });
     }
 
     function submitOnClick() {
         $('#submit').on('click', function() {
-            comment.FsubmitComment();
+            submitComment();
         });
     }
 
@@ -81,9 +79,9 @@ var comment = function () {
 //        var commentContent = jComment.parent().next().html().trim();
         var  commentLevel = jComment.parent().find("#commentLevel").text().trim();
         var quoteContent ="<blockquote>\r\n" +
-            "<pre>回复 <span class='commentlevel'> " +commentLevel+"楼</span>"+commentName + "：</pre>\r\n"
-             + "</blockquote>" ;
-        $("#comment").text(quoteContent);
+            "<pre>回复 <span class='commentlevel'> " +commentLevel+"楼: </span>"+commentName + "：</pre>\r\n"
+             + "</blockquote>\r\n" ;
+        $("#comment").val(quoteContent);
     }
 
     /**
@@ -110,8 +108,6 @@ var comment = function () {
 
 
     return {
-        FsubmitComment : submitComment,
-        FquoteComment : quoteComment,
         FinitOnClick : initOnClick,
         FsubmitOnClick : submitOnClick
     };

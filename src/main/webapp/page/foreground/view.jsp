@@ -14,7 +14,7 @@
 <%@include file="/page/foreground/common/header.jsp"%>
 
 <div id="articlecontent">
-		<div class="wrap">
+		<div class="wrap clearfix">
 			<div class="articlecon">
 				<div class="articleleft">
 				<!-- begin content -->
@@ -55,5 +55,4 @@
 </body>
 <script type="text/javascript" src="/js/admin/foreground.js"></script>
 <script type="text/javascript" src="/js/admin/comment.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
 </html>
