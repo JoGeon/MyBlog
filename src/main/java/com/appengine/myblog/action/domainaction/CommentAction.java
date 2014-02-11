@@ -13,7 +13,6 @@ import javax.annotation.Resource;
 import java.util.Date;
 
 /**
- *
  * User: ThinkPadT420i
  * Date: 13-12-17
  * Time: 下午9:56
@@ -28,18 +27,20 @@ public class CommentAction {
 
     private String resultMessage;
 
-    @Resource CommentService commentService;
-    @Resource ArticleService articleService;
+    @Resource
+    CommentService commentService;
+    @Resource
+    ArticleService articleService;
 
     public String saveComment() {
-        if(validationComment(comment)) {
+        if (validationComment(comment)) {
             Article article = articleService.findArticleByID(articleID);
             comment.setCommentTime(new Date());
             comment.setArticle(article);
             //找到当前评论的最大评论层级
-            String hql = "select max(c.commentLevel) from Comment c where c.article.articleid = '" + articleID +"'";
+            String hql = "select max(c.commentLevel) from Comment c where c.article.articleid = '" + articleID + "'";
             int level = commentService.findCommentLevle(hql);
-            comment.setCommentLevel((level+1));
+            comment.setCommentLevel((level + 1));
             commentService.saveComment(comment);
             resultMessage = BlogConstant.Success;
         }
@@ -57,7 +58,7 @@ public class CommentAction {
         //评论名字只能由数字和字母组成下划线
         //邮箱和URL需要通过正则判断
 
-        if(!commentName.matches("([a-zA-Z0-9_\\u4e00-\\u9fa5])*") ) {
+        if (!commentName.matches("([a-zA-Z0-9_\\u4e00-\\u9fa5])*")) {
             sb.append("昵称必须是数字、字母或汉字组成！");
         } else if (!commentEmail.matches("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*")) {
             sb.append("Email格式不匹配！");

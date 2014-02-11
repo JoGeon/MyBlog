@@ -17,7 +17,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthorServiceImpl implements AuthorService {
 
-    @Autowired AuthorDAO authorDAO;
+    @Autowired
+    AuthorDAO authorDAO;
 
     @Override
     public Author findAuthorByParam(String hql, Object... params) {

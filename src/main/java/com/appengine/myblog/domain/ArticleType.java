@@ -22,53 +22,54 @@ import org.hibernate.annotations.Where;
  * <p>Description: </p>
  * <p>Copyright: Copyright (c) 2013-7-15</p>
  * <p>Company: NO</p>
+ *
  * @author zhanglei
- * @date 2013-7-15
  * @version 1.0
+ * @date 2013-7-15
  */
 @Entity
-@Table(name="blog_articleType")
+@Table(name = "blog_articleType")
 public class ArticleType {
-	
-	private Long articleTypeId;
-	
-	private String articleTypeName;
+
+    private Long articleTypeId;
+
+    private String articleTypeName;
 
     private String articleTypeDesName;
 
     private String articleTypeDescription;
-	
-	private Set<Article> article = new HashSet<Article>();
-	
-	@Transient
-	private int articleTypeCount;
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="articleTypeId", nullable=false)
-	public Long getArticleTypeId() {
-		return articleTypeId;
-	}
+    private Set<Article> article = new HashSet<Article>();
 
-	public void setArticleTypeId(Long articleTypeId) {
-		this.articleTypeId = articleTypeId;
-	}
+    @Transient
+    private int articleTypeCount;
 
-	public String getArticleTypeName() {
-		return articleTypeName;
-	}
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "articleTypeId", nullable = false)
+    public Long getArticleTypeId() {
+        return articleTypeId;
+    }
 
-	public void setArticleTypeName(String articleTypeName) {
-		this.articleTypeName = articleTypeName;
-	}
+    public void setArticleTypeId(Long articleTypeId) {
+        this.articleTypeId = articleTypeId;
+    }
 
-	public String getArticleTypeDescription() {
-		return articleTypeDescription;
-	}
+    public String getArticleTypeName() {
+        return articleTypeName;
+    }
 
-	public void setArticleTypeDescription(String articleTypeDescription) {
-		this.articleTypeDescription = articleTypeDescription;
-	}
+    public void setArticleTypeName(String articleTypeName) {
+        this.articleTypeName = articleTypeName;
+    }
+
+    public String getArticleTypeDescription() {
+        return articleTypeDescription;
+    }
+
+    public void setArticleTypeDescription(String articleTypeDescription) {
+        this.articleTypeDescription = articleTypeDescription;
+    }
 
     public String getArticleTypeDesName() {
         return articleTypeDesName;
@@ -78,27 +79,27 @@ public class ArticleType {
         this.articleTypeDesName = articleTypeDesName;
     }
 
-	@JSON(serialize = false)
-	@OneToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH,
-			CascadeType.MERGE, CascadeType.REMOVE },
-                     fetch = FetchType.LAZY,
-                      mappedBy = "articleType")
+    @JSON(serialize = false)
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH,
+            CascadeType.MERGE, CascadeType.REMOVE},
+            fetch = FetchType.LAZY,
+            mappedBy = "articleType")
     @Where(clause = "isPublish = 1")
-	public Set<Article> getArticle() {
-		return article;
-	}
+    public Set<Article> getArticle() {
+        return article;
+    }
 
-	public void setArticle(Set<Article> article) {
-		this.article = article;
-	}
+    public void setArticle(Set<Article> article) {
+        this.article = article;
+    }
 
-	public int getArticleTypeCount() {
-		return articleTypeCount;
-	}
+    public int getArticleTypeCount() {
+        return articleTypeCount;
+    }
 
-	public void setArticleTypeCount(int articleTypeCount) {
-		this.articleTypeCount = articleTypeCount;
-	}
-	
+    public void setArticleTypeCount(int articleTypeCount) {
+        this.articleTypeCount = articleTypeCount;
+    }
+
 }
 

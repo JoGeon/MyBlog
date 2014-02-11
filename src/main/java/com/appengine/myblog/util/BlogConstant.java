@@ -10,9 +10,9 @@ package com.appengine.myblog.util;
  */
 public class BlogConstant {
 
-    public static final String articlePublishSuccess ="文章发布成功！";
+    public static final String articlePublishSuccess = "文章发布成功！";
 
-    public static final String Success ="sucess";
+    public static final String Success = "sucess";
 
 
 }

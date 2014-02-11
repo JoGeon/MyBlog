@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 import com.appengine.myblog.dao.hibernate.CommentDAO;
 
 /**
- * 
-* <p>Title: CommentServiceImpl.java</p>
-* <p>Description: </p>
-* <p>Copyright: Copyright (c) 2013</p>
-* <p>Company: NO</p>
-* @author ThinkPadT420i
-* @date 2013年12月20日
-* @version 1.0
+ * <p>Title: CommentServiceImpl.java</p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2013</p>
+ * <p>Company: NO</p>
+ *
+ * @author ThinkPadT420i
+ * @version 1.0
+ * @date 2013年12月20日
  */
 @Service
 public class CommentServiceImpl implements CommentService {

@@ -7,33 +7,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * 
-* <p>Title: VisitorInfoServiceImpl.java</p>
-* <p>Description: </p>
-* <p>Copyright: Copyright (c) 2013</p>
-* <p>Company: NO</p>
-* @author ThinkPadT420i
-* @date 2013年12月20日
-* @version 1.0
+ * <p>Title: VisitorInfoServiceImpl.java</p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2013</p>
+ * <p>Company: NO</p>
+ *
+ * @author ThinkPadT420i
+ * @version 1.0
+ * @date 2013年12月20日
  */
 @Service
 public class VisitorInfoServiceImpl implements VisitorInfoService {
 
-	@Autowired VisitorDAO visitorDAO;
+    @Autowired
+    VisitorDAO visitorDAO;
 
-	@Override
-	public void save(Visitor visitInfo) {
-		visitorDAO.saveVisitor(visitInfo);
-	}
+    @Override
+    public void save(Visitor visitInfo) {
+        visitorDAO.saveVisitor(visitInfo);
+    }
 
-	@Override
-	public void update(Visitor visitInfo) {
-		visitorDAO.updateVisitor(visitInfo);
-	}
+    @Override
+    public void update(Visitor visitInfo) {
+        visitorDAO.updateVisitor(visitInfo);
+    }
 
-	@Override
-	public Visitor findMaxVisitor(String hql) {
-		Visitor visitorInfo = visitorDAO.findMaxVisitor(hql);
-		return visitorInfo;
-	}
+    @Override
+    public Visitor findMaxVisitor(String hql) {
+        Visitor visitorInfo = visitorDAO.findMaxVisitor(hql);
+        return visitorInfo;
+    }
 }

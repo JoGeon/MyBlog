@@ -7,14 +7,14 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * 
-* <p>Title: CommentDAO.java</p>
-* <p>Description: </p>
-* <p>Copyright: Copyright (c) 2013</p>
-* <p>Company: NO</p>
-* @author ThinkPadT420i
-* @date 2013年12月20日
-* @version 1.0
+ * <p>Title: CommentDAO.java</p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2013</p>
+ * <p>Company: NO</p>
+ *
+ * @author ThinkPadT420i
+ * @version 1.0
+ * @date 2013年12月20日
  */
 @Repository
 public class CommentDAO extends HibernateDaoSupport<Comment> {
@@ -35,7 +35,7 @@ public class CommentDAO extends HibernateDaoSupport<Comment> {
      */
     public int findCommentLevel(String hql) {
         List commentLevel = find(hql);
-        return commentLevel.size()>0 ?  ((Integer)commentLevel.get(0)) : 0 ;
+        return commentLevel.size() > 0 ? ((Integer) commentLevel.get(0)) : 0;
     }
 
 }

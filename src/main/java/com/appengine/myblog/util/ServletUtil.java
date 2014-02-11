@@ -7,14 +7,14 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * 
-* <p>Title: ServletUtil.java</p>
-* <p>Description: </p>
-* <p>Copyright: Copyright (c) 2013</p>
-* <p>Company: NO</p>
-* @author ThinkPadT420i
-* @date 2013年12月20日
-* @version 1.0
+ * <p>Title: ServletUtil.java</p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2013</p>
+ * <p>Company: NO</p>
+ *
+ * @author ThinkPadT420i
+ * @version 1.0
+ * @date 2013年12月20日
  */
 public class ServletUtil {
 
@@ -41,7 +41,7 @@ public class ServletUtil {
         }
 
         //处理BAE的IP，获取到当前访问的真实IP
-        if(ip != null) {
+        if (ip != null) {
             String[] baeIP = ip.split(",");
             ip = baeIP[0];
         }
@@ -59,7 +59,7 @@ public class ServletUtil {
         DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = null;
         try {
-             date = df.parse(strdate);
+            date = df.parse(strdate);
         } catch (ParseException e) {
             e.printStackTrace();
         }

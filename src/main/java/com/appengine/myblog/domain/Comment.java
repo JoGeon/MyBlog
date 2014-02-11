@@ -4,47 +4,64 @@ import org.apache.struts2.json.annotations.JSON;
 
 import javax.persistence.*;
 import java.util.Date;
+
 /**
- * 
-* <p>Title: Comment.java</p>
-* <p>Description: </p>
-* <p>Copyright: Copyright (c) 2013</p>
-* <p>Company: NO</p>
-* @author ThinkPadT420i
-* @date 2013年12月20日
-* @version 1.0
+ * <p>Title: Comment.java</p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2013</p>
+ * <p>Company: NO</p>
+ *
+ * @author ThinkPadT420i
+ * @version 1.0
+ * @date 2013年12月20日
  */
 @Entity
-@Table(name="blog_comment")
+@Table(name = "blog_comment")
 public class Comment {
 
-    /**评论ID*/
+    /**
+     * 评论ID
+     */
     private Long commentID;
 
-    /**评论名称*/
+    /**
+     * 评论名称
+     */
     private String commentName;
 
-    /**评论邮箱*/
+    /**
+     * 评论邮箱
+     */
     private String commentEmial;
 
-    /**评论网址*/
+    /**
+     * 评论网址
+     */
     private String commentURL;
 
-    /**评论内容*/
+    /**
+     * 评论内容
+     */
     private String commnetContent;
 
-    /**评论级数*/
+    /**
+     * 评论级数
+     */
     private int commentLevel;
 
-    /**评论时间*/
+    /**
+     * 评论时间
+     */
     private Date commentTime;
 
-    /**评论所属的文章，为多个评论对一个文章*/
+    /**
+     * 评论所属的文章，为多个评论对一个文章
+     */
     private Article article;
 
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getCommentID() {
         return commentID;
     }
@@ -79,6 +96,7 @@ public class Comment {
         this.commentURL = commentURL;
     }
 
+    @Column(length = 1000)
     public String getCommnetContent() {
         return commnetContent;
     }
@@ -95,7 +113,7 @@ public class Comment {
         this.commentLevel = commentLevel;
     }
 
-    @JSON(format="yyyy-MM-dd HH:mm:ss")
+    @JSON(format = "yyyy-MM-dd HH:mm:ss")
     public Date getCommentTime() {
         return commentTime;
     }
@@ -105,8 +123,8 @@ public class Comment {
     }
 
     @JSON(serialize = false)
-    @ManyToOne(cascade={CascadeType.ALL},fetch=FetchType.EAGER,optional=false)
-    @JoinColumn(name="articleID")
+    @ManyToOne(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "articleID")
     public Article getArticle() {
         return article;
     }

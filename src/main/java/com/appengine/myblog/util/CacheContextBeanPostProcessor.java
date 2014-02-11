@@ -11,59 +11,61 @@ import org.springframework.beans.factory.config.BeanPostProcessor;
 import com.appengine.myblog.action.BlogMainAction;
 
 /**
- *  一些系统初始化数据的加载
-* <p>Title: CacheContextBeanPostProcessor.java</p>
-* <p>Description: </p>
-* <p>Copyright: Copyright (c) 2013</p>
-* <p>Company: NO</p>
-* @author ThinkPadT420i
-* @date 2013年12月2日
-* @version 1.0
+ * 一些系统初始化数据的加载
+ * <p>Title: CacheContextBeanPostProcessor.java</p>
+ * <p>Description: </p>
+ * <p>Copyright: Copyright (c) 2013</p>
+ * <p>Company: NO</p>
+ *
+ * @author ThinkPadT420i
+ * @version 1.0
+ * @date 2013年12月2日
  */
 public class CacheContextBeanPostProcessor implements BeanPostProcessor {
-	
-	static Logger logger = Logger.getLogger(CacheContextBeanPostProcessor.class.getName());
-	
-	@Autowired private ServletContext context = null;
-	
-	public CacheContextBeanPostProcessor() {
-		
-	}
 
-	@Override
-	public Object postProcessAfterInitialization(Object bean, String beanName)
-			throws BeansException {
-				try {
-					if(bean instanceof BlogMainAction) {
-						logger.info("begin execute BlogMainAction");
-						BlogMainAction blogMainAction = ((BlogMainAction) bean);
-						Visitor visitorInfo = blogMainAction.findMaxVisitor();
-						long visitorCount = 0;
-						if (visitorInfo != null) {
-							visitorCount = visitorInfo.getOnlineCount();
-						}
-						context.setAttribute("visitorMaxCount", visitorCount);
-						context.setAttribute("allVisitCount", 10);
-						logger.info("end executeBlogMainAction and visitor:" + visitorCount);
-					}
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		return bean;
-	}
+    static Logger logger = Logger.getLogger(CacheContextBeanPostProcessor.class.getName());
 
-	@Override
-	public Object postProcessBeforeInitialization(Object bean, String beanName)
-			throws BeansException {
-		return bean;
-	}
+    @Autowired
+    private ServletContext context = null;
 
-	public ServletContext getContext() {
-		return context;
-	}
+    public CacheContextBeanPostProcessor() {
 
-	public void setContext(ServletContext context) {
-		this.context = context;
-	}
-	
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, String beanName)
+            throws BeansException {
+        try {
+            if (bean instanceof BlogMainAction) {
+                logger.info("begin execute BlogMainAction");
+                BlogMainAction blogMainAction = ((BlogMainAction) bean);
+                Visitor visitorInfo = blogMainAction.findMaxVisitor();
+                long visitorCount = 0;
+                if (visitorInfo != null) {
+                    visitorCount = visitorInfo.getOnlineCount();
+                }
+                context.setAttribute("visitorMaxCount", visitorCount);
+                context.setAttribute("allVisitCount", 10);
+                logger.info("end executeBlogMainAction and visitor:" + visitorCount);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bean;
+    }
+
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, String beanName)
+            throws BeansException {
+        return bean;
+    }
+
+    public ServletContext getContext() {
+        return context;
+    }
+
+    public void setContext(ServletContext context) {
+        this.context = context;
+    }
+
 }
