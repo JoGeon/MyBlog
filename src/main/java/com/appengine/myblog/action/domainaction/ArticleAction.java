@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import com.appengine.myblog.util.BlogConstant;
 import org.apache.struts2.json.annotations.JSON;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -41,9 +42,6 @@ public class ArticleAction {
     @Resource
     ArticleTypeServiec articleTypeServiec;
 
-    public String managerArticle() {
-        return "success";
-    }
 
     /**
      * 创建文章，并进行保存,保存在草稿箱内
@@ -63,7 +61,7 @@ public class ArticleAction {
 
         //保存后返回该文章的ID编号
         articleID = article.getArticleid().intValue();
-        resultMessage = "保存成功！";
+        resultMessage = BlogConstant.SAVESUCESS;
 
         //增加文章类型的数量
 //		int articleTypeID = article.getArticleTypeID();
@@ -84,7 +82,7 @@ public class ArticleAction {
 
         //保存后返回该文章的ID编号
         articleID = publishArticle.getArticleid().intValue();
-        resultMessage = "发布成功！";
+        resultMessage = BlogConstant.PUBLISHSUCESS;
         return "success";
     }
 
@@ -99,7 +97,7 @@ public class ArticleAction {
 
         //保存后返回该文章的ID编号
         articleID = updateArticle.getArticleid().intValue();
-        resultMessage = "更新成功！";
+        resultMessage = BlogConstant.UPDATESUCESS;
         return "success";
     }
 

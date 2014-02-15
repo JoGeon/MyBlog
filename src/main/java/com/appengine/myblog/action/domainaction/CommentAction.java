@@ -42,9 +42,9 @@ public class CommentAction {
             int level = commentService.findCommentLevle(hql);
             comment.setCommentLevel((level + 1));
             commentService.saveComment(comment);
-            resultMessage = BlogConstant.Success;
+            resultMessage = BlogConstant.COMMENTSUCESS;
         }
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
 

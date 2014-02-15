@@ -2,6 +2,7 @@ package com.appengine.myblog.action.domainaction;
 
 import javax.annotation.Resource;
 
+import com.appengine.myblog.util.BlogConstant;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
@@ -31,8 +32,8 @@ public class ArticleTypeAction {
 
     public String saveArticleType() {
         articleTypeService.saveArticleType(articleType);
-        resultMessage = "保存成功！";
-        return "success";
+        resultMessage = BlogConstant.SAVESUCESS;
+        return BlogConstant.SUCCESS;
     }
 
     public ArticleType getArticleType() {

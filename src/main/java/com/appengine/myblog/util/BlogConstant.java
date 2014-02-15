@@ -12,10 +12,20 @@ public class BlogConstant {
 
     public static final String AUTHOR_SESSION = "author.session";
 
-    public static final String articlePublishSuccess = "文章发布成功！";
+    public static final String PUBLISHSUCESS = "文章发布成功！";
 
-    public static final String Success = "sucess";
+    public static final String SAVESUCESS ="保存成功！";
 
-    public static final String Error ="error";
+    public static final String UPDATESUCESS = "更新成功！";
+
+    public static final String COMMENTSUCESS = "评论成功！";
+
+    public static final String SUCCESS = "sucess";
+
+    public static final String INPUT = "Input";
+
+    public static final String ERROR ="error";
+
+    public static final String LOGIN = "login";
 
 }

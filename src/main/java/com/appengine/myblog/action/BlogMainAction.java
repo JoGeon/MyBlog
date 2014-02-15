@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 import com.appengine.myblog.domain.*;
 import com.appengine.myblog.service.AuthorService;
 import com.appengine.myblog.service.VisitorInfoService;
+import com.appengine.myblog.util.BlogConstant;
 import com.appengine.myblog.util.ServletUtil;
 import org.springframework.stereotype.Controller;
 
@@ -89,7 +90,7 @@ public class BlogMainAction {
         ActionContext.getContext().put("articleCollection", pageArticle);
         //设置分页的初始值为0
         setOffset(0);
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
     public String viewArticle() {
@@ -99,11 +100,11 @@ public class BlogMainAction {
         Article article = articleService.findArticleByLink(hql, params);
 
         if (article == null) {
-            return "error";
+            return BlogConstant.ERROR;
         }
 
         ActionContext.getContext().put("article", article);
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
     /**
@@ -114,7 +115,7 @@ public class BlogMainAction {
     public String showCategory() {
         List<ArticleType> articleTypes = articleTypeService.findAllArticleType();
         ActionContext.getContext().put("articleTypes", articleTypes);
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
     /**
@@ -146,7 +147,7 @@ public class BlogMainAction {
         ActionContext.getContext().put("pageCount", pageCount);
         //设置分页的初始值为0
         setOffset(0);
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
 
@@ -209,7 +210,7 @@ public class BlogMainAction {
         }
 
         ActionContext.getContext().put("archive", mapArchive);
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
     /**
@@ -219,7 +220,7 @@ public class BlogMainAction {
      */
     public String showAbout() {
 
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
     /**
@@ -247,7 +248,7 @@ public class BlogMainAction {
 
     public String findArticle() {
         article = articleService.findArticleByID((long) articleID);
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
     /**
@@ -257,7 +258,7 @@ public class BlogMainAction {
      */
     public String findAllArticleType() {
         listArticleTypes = articleTypeService.findAllArticleType();
-        return "success";
+        return BlogConstant.SUCCESS;
     }
 
     /**

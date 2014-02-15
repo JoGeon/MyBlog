@@ -34,9 +34,9 @@ public class LoginAction {
 
         //处理Cookie
         if (CookieUtils.getAuthorCookie(ServletActionContext.getRequest(), authorService)) {
-            return "success";
+            return BlogConstant.SUCCESS;
         } else
-            return "input";
+            return BlogConstant.INPUT;
 
     }
 
@@ -56,12 +56,12 @@ public class LoginAction {
                     }
                     //将Author设置到Session中
                     ServletActionContext.getContext().getSession().put(BlogConstant.AUTHOR_SESSION, author);
-                    return "success";
+                    return BlogConstant.SUCCESS;
                 }
             }
         }
-        ServletActionContext.getPageContext().setAttribute(BlogConstant.Error, "用户名或密码错误！");
-        return "login";
+        ServletActionContext.getPageContext().setAttribute(BlogConstant.ERROR, "用户名或密码错误！");
+        return BlogConstant.LOGIN;
     }
 
 
