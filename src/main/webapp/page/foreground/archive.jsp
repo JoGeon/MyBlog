@@ -19,22 +19,49 @@
 
         <div class="articleCategory">
             <ul class="article_type_level1">
-                <s:iterator value="#archive.keySet()" id="key">
+                <!--年-->
+                <s:iterator value="#archive.keySet()" id="keyyear">
                     <li class="type_name clear">
                         <div class="arrow right_arrow left"></div>
-                        <a href='/archive/<s:property value='#key.substring(0,7).replaceAll("[\u4e00-\u9fa5]", "-")'/>'>
-                            <s:property value="#key"/>
+                        <a href='/archive/<s:property value='#keyyear'/>'>
+                            <s:property value="#keyyear"/>年
                         </a>
-                        <span class="article_count"><s:property value="#archive.get(#key).size()"/></span>
                     </li>
-                    <!--循环分类下的文章 class="article_info"-->
+                    <!--月-->
                     <li class="none">
                         <ul class="article_type_level2">
-                            <s:iterator var="article" value="#archive.get(#key)">
-                                <li class="type_content">
-                                    <span><s:date name="#article.get(2)" format="dd日"/>：</span>
-                                    <a href='/blog/<s:property value="#article.get(1)"/>'><s:property value="#article.get(0)"/></a>
+                            <s:iterator  value ="#archive.get(#keyyear).keySet()" id="keymonth">
+                                <li class="type_name clear">
+                                    <div class="arrow right_arrow left"></div>
+                                    <a href='/archive/<s:property value='#keyyear'/>/<s:property value='#keymonth'/>'>
+                                        <s:property value="#keymonth"/>月
+                                    </a>
                                 </li>
+                                <li class="none">
+                                    <ul class="article_type_level3">
+                                        <s:iterator var="mapday" value ="#archive.get(#keyyear).get(#keymonth).keySet()" id="keyday">
+
+                                            <li class="type_name clear">
+                                                <div class="arrow right_arrow left"></div>
+                                                <a href='/archive/<s:property value='#keyyear'/>/<s:property value='#keymonth'/>/<s:property value='#keyday'/>'>
+                                                    <s:property value="#keyday"/>日
+                                                </a>
+                                                    <span class="article_count"><s:property value="#archive.get(#keyyear).get(#keymonth).get(#keyday).size()"/></span>
+                                            </li>
+                                            <!--循环分类下的文章 class="article_info"-->
+                                            <li class="none">
+                                                <ul class="article_type_level4">
+                                                    <s:iterator var="article" value="#archive.get(#keyyear).get(#keymonth).get(#keyday)">
+                                                        <li class="type_content">
+                                                            <a href='/blog/<s:property value="#article.get(1)"/>'><s:property value="#article.get(0)"/></a>
+                                                        </li>
+                                                    </s:iterator>
+                                                 </ul>
+                                             </li>
+                                        </s:iterator>
+                                    </ul>
+                                </li>
+
                             </s:iterator>
                         </ul>
                     </li>

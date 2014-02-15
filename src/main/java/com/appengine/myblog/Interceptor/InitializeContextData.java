@@ -39,9 +39,12 @@ public class InitializeContextData extends AbstractInterceptor {
 
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {
-        BlogMainAction blogMainAction = (BlogMainAction) invocation.getAction();
-        //加载文章分类
-        if (blogMainAction != null) {
+
+        BlogMainAction blogMainAction = null;
+        if (invocation.getAction() instanceof BlogMainAction) {
+
+            blogMainAction = (BlogMainAction) invocation.getAction();
+            //加载文章分类
             //获取所有文章分类的内容
             if (ActionContext.getContext().getSession().get("articleTypeList") == null) {
                 List<ArticleType> listArticleType = blogMainAction.findArticleTypeCount();
@@ -77,11 +80,12 @@ public class InitializeContextData extends AbstractInterceptor {
             visitor.setOnlineCount(visitCount);
             visitor.setOnlienDate(new Date());
             session.put("visitInfo", visitor);
-            if (blogMainAction != null) {
+            if(blogMainAction !=null) {
                 blogMainAction.saveVisitor(visitor);
             }
             logger.info("访客增加，当前第" + visitCount + "位访客！");
         }
+
         return result;
     }
 }

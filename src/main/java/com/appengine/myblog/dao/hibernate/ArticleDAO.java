@@ -67,7 +67,7 @@ public class ArticleDAO extends HibernateDaoSupport<Article> {
      * @param pageSize 文章数
      * @return
      */
-    public List findArticleByPage(String hql, int offset, int pageSize) {
+    public List<Article> findArticleByPage(String hql, int offset, int pageSize) {
         return findByPage(hql, offset, pageSize);
     }
 

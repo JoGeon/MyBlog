@@ -284,13 +284,12 @@
             <version>4.2</version>
         </dependency>
 
-        <!--dependency>
+        <dependency>
             <groupId>com.baidu.bae</groupId>
             <artifactId>mcpack</artifactId>
             <version>1.0.0.9</version>
-            <scope>system</scope>
-            <systemPath>F:/Package/maven/mvn-repo/com/baidu/bae/mcpack/1.0.0.9/mcpack-1.0.0.9.jar</systemPath>
-        </dependency-->
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>com.google.code.gson</groupId>

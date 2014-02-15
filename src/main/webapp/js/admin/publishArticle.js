@@ -158,6 +158,7 @@ var publishArticle = function() {
             var JSONObject = {
                 "articleType" : {
                     "articleTypeName" : $('#articleTypeName').val(),
+                    "articleTypeDesName" : $('#articleTypeDesName').val(),
                     "articleTypeDescription" : $('#articleTypeDescription').val(),
                     "articleTypeCount" : '0'
                 }

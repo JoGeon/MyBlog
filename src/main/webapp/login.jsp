@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,11 @@
 		<div class="login">
 			<h1>Login</h1>
 			<form method="post" action="/background/admin">
+                <!--p class="errMessage">
+                    <s:if test="#error != null">
+                        <s:property value="#error"/>
+                    </s:if>
+                </p-->
 				<p>
 					<input type="text" name="author.authorname" value="" placeholder="Username or Email"/>
 				</p>

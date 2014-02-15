@@ -12,6 +12,9 @@ import com.appengine.myblog.domain.Author;
  */
 public interface AuthorService {
 
+    public Author findAuthor(String authorname, String password);
+
     public Author findAuthorByParam(String hql, Object... params);
+
 
 }

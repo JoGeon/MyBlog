@@ -21,7 +21,15 @@ public class AuthorServiceImpl implements AuthorService {
     AuthorDAO authorDAO;
 
     @Override
+    public Author findAuthor(String authorname, String password) {
+        String hql = "from Author a  where a.authorname = ? and a.password = ?";
+        return findAuthorByParam(hql, authorname, password);
+    }
+
+    @Override
     public Author findAuthorByParam(String hql, Object... params) {
         return authorDAO.findAuthor(hql, params);
     }
+
+
 }

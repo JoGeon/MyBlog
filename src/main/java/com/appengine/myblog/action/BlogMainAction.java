@@ -44,11 +44,6 @@ public class BlogMainAction {
     @Resource
     VisitorInfoService visitInfoService;
 
-    @Resource
-    AuthorService authorService;
-
-    private Author author;
-
     private Article article;
 
     private int articleID = 0;
@@ -164,7 +159,7 @@ public class BlogMainAction {
         String hql = "select new List(a.articleTitle, a.articleLink, a.articlePublishTime) from Article as a  where a.isPublish = 1";
         List pageArticle = articleService.findAllArticle(hql);
         //处理归档内容
-        Map<String, List<List>> mapArchive = new HashMap<>();
+        Map<Integer, Map<Integer, Map<Integer, List<List>>>> mapArchive = new HashMap<Integer, Map<Integer, Map<Integer, List<List>>>>();
         List<List> articleList;
         for (Iterator it = pageArticle.iterator(); it.hasNext(); ) {
             //存放归档信息的List
@@ -172,17 +167,44 @@ public class BlogMainAction {
             //数据库查询出来的Article信息
             List article = (List) it.next();
             //格式化日期作为Map的主键
-            String date = ServletUtil.formatDate(String.valueOf(article.get(2)));
+//            String year = ServletUtil.formatDate(String.valueOf(article.get(2)));
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime((Date)article.get(2));
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
             //查找该日期KEY确定集合里面是否有该日期记录
-            List<List> list = mapArchive.get(date);
-            if (list != null && list.size() > 0) {
-                //存在则直接添加List
-                list.add(article);
-                mapArchive.put(date, list);
+            //处理年
+            Map<Integer, Map<Integer, List<List>>> mapMonth = mapArchive.get(year);
+            if (mapMonth != null && mapMonth.size() > 0) {
+                //处理日
+                Map<Integer, List<List>> mapDay = mapMonth.get(month);
+                if(mapDay != null && mapDay.size() > 0) {
+                    List<List> list = mapDay.get(day);
+                    if(list != null && list.size() > 0) {
+                        //存在则直接添加List
+                        list.add(article);
+                        mapDay.put(day, list);
+                    } else {
+                        //不存在日的，则添加到日文章里面
+                        articleList.add(article);
+                        mapDay.put(day, articleList);
+                    }
+                } else {
+                    //不存在月的，则添加到月文章里面
+                    articleList.add(article);
+                    HashMap<Integer, List<List>> archivedaylist = new HashMap<>();
+                    archivedaylist.put(day, articleList);
+                    mapMonth.put(month, archivedaylist);
+                }
             } else {
                 //如果不存在，则添加到新的key-value对中
                 articleList.add(article);
-                mapArchive.put(date, articleList);
+                Map<Integer, List<List>> archiveday = new HashMap<Integer, List<List>>();
+                archiveday.put(day, articleList);
+                Map<Integer, Map<Integer,List<List>>> archiveMonth = new HashMap<Integer, Map<Integer,List<List>>>();
+                archiveMonth.put(month, archiveday);
+                mapArchive.put(year,archiveMonth);
             }
         }
 
@@ -199,25 +221,6 @@ public class BlogMainAction {
 
         return "success";
     }
-
-
-    /**
-     * 完成用户名的验证，并转到后台管理页面。
-     *
-     * @return success
-     */
-    public String login() {
-        if (author == null) return "input";
-        String authorname = author.getAuthorname();
-        String authorpass = author.getPassword();
-        String hql = "from Author a  where a.authorname = ? and a.password = ?";
-        author = authorService.findAuthorByParam(hql, authorname, authorpass);
-
-        if (author == null) return "input";
-
-        return "success";
-    }
-
 
     /**
      * 查找热门文章，根据访问数量进行排序，并展示5个文章的标题
@@ -300,14 +303,6 @@ public class BlogMainAction {
 
     public void setOffset(int offset) {
         this.offset = offset;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
-        this.author = author;
     }
 
     public int getArticleID() {

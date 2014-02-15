@@ -1,54 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC
-	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
-	"http://struts.apache.org/dtds/struts-2.3.dtd">
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
 <!-- 指定struts2的配置文件的根元素 -->
 <struts>
-	<constant name="struts.devMode" value="true" />
-	<constant name="struts.configuration.xml.reload" value="false" />
-	<constant name="struts.i18n.reload" value="false" />
-	<constant name="struts.action.extension" value="action"/>
-	<constant name="struts.enable.SlashesInActionNames" value="true"/>
-	
-	<!-- 指定使用spring对象工厂来创建action -->
-	<constant name="struts.objectFactory" value="spring" />
+    <constant name="struts.devMode" value="true"/>
+    <constant name="struts.configuration.xml.reload" value="false"/>
+    <constant name="struts.i18n.reload" value="false"/>
+    <constant name="struts.action.extension" value="action"/>
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
 
-	<!-- package name="default" extends="struts-default">
-		<default-action-ref name="notFound" />
-		<action name="notFound">
-			<result>/page/error/404.jsp</result>
-		</action>
-	</package-->
+    <!-- 指定使用spring对象工厂来创建action -->
+    <constant name="struts.objectFactory" value="spring"/>
 
-	<package name="homepage" namespace="/" extends="struts-default">
-		<interceptors>
-			<interceptor name="initializeContextData" class="com.appengine.myblog.Interceptor.InitializeContextData"/>
-			<interceptor name="recordReadCount" class="com.appengine.myblog.Interceptor.RecordReadCount"/>
-			<interceptor-stack name="blogInterceptor">
-				<interceptor-ref name="initializeContextData"/>
-				<interceptor-ref name="recordReadCount"/>
-				<!-- 引用Timer拦截器，记录action访问时间 -->
-				<interceptor-ref name="timer" />
-				<interceptor-ref name="defaultStack"/>
-			</interceptor-stack>
-		</interceptors>
-	
-		<default-interceptor-ref name="blogInterceptor"/>
-		<action name="home" class="blogMainAction">
-			<result name="success">/page/foreground/index.jsp</result>
-		</action>
+    <package name="default" extends="struts-default">
+        <default-action-ref name="notFound" />
+        <action name="notFound">
+            <result>/page/error/404.jsp</result>
+        </action>
+    </package>
 
-		<!-- 登录后台业务 -->
-		<action name="login" class="blogMainAction" method="login">
-			<result name="input">/login.jsp</result>
-		</action>
+    <package name="homepage" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor name="initializeContextData" class="com.appengine.myblog.Interceptor.InitializeContextData"/>
+            <interceptor name="recordReadCount" class="com.appengine.myblog.Interceptor.RecordReadCount"/>
+            <interceptor-stack name="blogInterceptor">
+                <interceptor-ref name="initializeContextData"/>
+                <interceptor-ref name="recordReadCount"/>
+                <!-- 引用Timer拦截器，记录action访问时间 -->
+                <interceptor-ref name="timer"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
 
-		<!-- 访问文章 -->
-		<action name="/blog/*" class="blogMainAction" method="viewArticle">
-			<result name="success">/page/foreground/view.jsp</result>
-			<result name="error">/page/error/404.jsp</result>
-			<param name="articleurl">{1}</param>
-		</action>
+        <default-interceptor-ref name="blogInterceptor"/>
+        <action name="home" class="blogMainAction">
+            <result name="success">/page/foreground/index.jsp</result>
+        </action>
+
+
+        <!-- 访问文章 -->
+        <action name="/blog/*" class="blogMainAction" method="viewArticle">
+            <result name="success">/page/foreground/view.jsp</result>
+            <result name="error">/page/error/404.jsp</result>
+            <param name="articleurl">{1}</param>
+        </action>
 
         <!--访问分类文章-->
         <action name="category" class="blogMainAction" method="showCategory">
@@ -61,7 +57,7 @@
             <result name="error">/page/error/404.jsp</result>
             <param name="articleurl">{1}</param>
         </action>
-        
+
         <!--访问文章归类-->
         <action name="archive" class="blogMainAction" method="showArchive">
             <result name="success">/page/foreground/archive.jsp</result>
@@ -75,16 +71,25 @@
             <result name="error">/page/error/404.jsp</result>
         </action>
 
-	</package>
-	
-	<package name="backgroundpage" namespace="/background" extends="struts-default">
-		<!-- 后台登陆Action -->
-		<action name="admin" class="blogMainAction" method="login">
-			<result name="success">/page/background/index.jsp</result>
-			<result name="input" >/login.jsp</result>
-		</action>
-		
-	</package>
+        <!-- 登录后台业务 -->
+        <action name="login" class="loginAction">
+            <result name="input">/login.jsp</result>
+            <!--自动登录-->
+            <result name="success" type="redirectAction">
+                <param name="actionName">admin</param>
+                <param name="namespace">background</param>
+            </result>
+        </action>
+
+    </package>
+
+    <package name="backgroundpage" namespace="/background" extends="struts-default">
+        <action name="admin" class="loginAction" method="login">
+            <result name="success">/page/background/index.jsp</result>
+            <result name="input">/login.jsp</result>
+        </action>
+
+    </package>
 
     <package name="submitComment" namespace="/blog/comment" extends="json-default">
 
@@ -96,55 +101,56 @@
         </action>
 
     </package>
-	
-	<package name="jsondata" namespace="/background" extends="json-default">
 
-		<interceptors>
-			<interceptor-stack name="myDefaultStack">
-				<interceptor-ref name="json"/>
-				<interceptor-ref name="timer"/>
-				<interceptor-ref name="defaultStack"/>
-			</interceptor-stack>
-		</interceptors>
-	
-		<default-interceptor-ref name="myDefaultStack"/>
-	      <action name="getArticleList"  class="blogMainAction" method="findAllArticle">
-	       	   <result name="success" type="json" >
-	       	   		<param name="excludeProperties">author, ^articl\w+, listArticleTypes, listArticle.*\.articleContent</param>
-	       	   </result>
-	      </action>
-	      
-	      <action name="getArticleByID"  class="blogMainAction" method="findArticle">
-	       	   <result name="success" type="json" >
-	       	   		<param name="excludeProperties">author,^article\w+, listArticle\w+</param>
-	       	   </result>
-	      </action>
-	      
-	      <action name="*Article" class="articleAction" method="{1}Article">
-		      	<result name="success" type="json">
-		      		<param name="excludeProperties">articleService</param>
-		      		
-		      		<!-- 开启 gzip　压缩 -->
-					<param name="enableGZIP">true</param>
-                 	<!-- 不缓存 -->
-                 	<param name="noCache">true</param>
-                 	<!-- 如果有属性值为空,则不发送此属性 -->
-                 	<param name="excludeNullProperties">true</param>
-		      	</result>
-	      </action>
-	      
-	      <action name="*ArticleType"  class="articleTypeAction" method="{1}ArticleType">
-	       	   <result name="success" type="json" >
-	       	   		<!-- param name="excludeProperties">articleTypeService</param-->
-	       	   </result>
-	      </action>
-	      
-	      <action name="getAllArticleType"  class="blogMainAction" method="findAllArticleType">
-	       	   <result name="success" type="json" >
-	       	   		<param name="excludeProperties">author,^articl\w+,listArticles</param>
-	       	   </result>
-	      </action>
-	      
+    <package name="jsondata" namespace="/background" extends="json-default">
+
+        <interceptors>
+            <interceptor-stack name="myDefaultStack">
+                <interceptor-ref name="json"/>
+                <interceptor-ref name="timer"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="myDefaultStack"/>
+        <action name="getArticleList" class="blogMainAction" method="findAllArticle">
+            <result name="success" type="json">
+                <param name="excludeProperties">author, ^articl\w+, listArticleTypes, listArticle.*\.articleContent
+                </param>
+            </result>
+        </action>
+
+        <action name="getArticleByID" class="blogMainAction" method="findArticle">
+            <result name="success" type="json">
+                <param name="excludeProperties">author,^article\w+, listArticle\w+</param>
+            </result>
+        </action>
+
+        <action name="*Article" class="articleAction" method="{1}Article">
+            <result name="success" type="json">
+                <param name="excludeProperties">articleService</param>
+
+                <!-- 开启 gzip　压缩 -->
+                <param name="enableGZIP">true</param>
+                <!-- 不缓存 -->
+                <param name="noCache">true</param>
+                <!-- 如果有属性值为空,则不发送此属性 -->
+                <param name="excludeNullProperties">true</param>
+            </result>
+        </action>
+
+        <action name="*ArticleType" class="articleTypeAction" method="{1}ArticleType">
+            <result name="success" type="json">
+                <!-- param name="excludeProperties">articleTypeService</param-->
+            </result>
+        </action>
+
+        <action name="getAllArticleType" class="blogMainAction" method="findAllArticleType">
+            <result name="success" type="json">
+                <param name="excludeProperties">author,^articl\w+,listArticles</param>
+            </result>
+        </action>
+
     </package>
-	
+
 </struts>
