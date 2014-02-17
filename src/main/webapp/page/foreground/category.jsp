@@ -8,7 +8,7 @@
     <link type="text/css" rel="stylesheet" href="/css/common.css">
     <link type="text/css" rel="stylesheet" href="/css/foreground.css" />
     <script type="text/javascript" src="/js/lib/jquery-1.10.2.js"></script>
-    <title>Welcome to SunnyZone</title>
+    <title>Welcome to MyBlog</title>
 </head>
 <body>
 <%@include file="/page/foreground/common/header.jsp"%>

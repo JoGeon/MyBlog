@@ -20,7 +20,7 @@ public class BlogConstant {
 
     public static final String COMMENTSUCESS = "评论成功！";
 
-    public static final String SUCCESS = "sucess";
+    public static final String SUCCESS = "success";
 
     public static final String INPUT = "Input";
 

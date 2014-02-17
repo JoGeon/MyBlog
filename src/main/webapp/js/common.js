@@ -62,6 +62,10 @@ var Util = {
             }
         });
     },
+
+    loadCounter: function() {
+        $("#counter").load();
+    },
     
     /**
      * @description 检测页面错误
@@ -176,7 +180,29 @@ var Util = {
             window.setTimeout(invokeFunction, 16);
         }
     },
-    
+
+    backToTop: function () {
+        // hide #back-top first
+        $("#back-top").hide();
+
+        // fade in #back-top
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#back-top').fadeIn();
+            } else {
+                $('#back-top').fadeOut();
+            }
+        });
+
+        // scroll body to 0px on click
+        $('#back-top a').click(function () {
+            $('body,html').animate({
+                scrollTop: 0
+            }, 800);
+            return false;
+        });
+    },
+
     /**
      * @description 回到底部
      */
@@ -238,6 +264,22 @@ var Util = {
             // 对中英文排序的处理
             return valA.localeCompare(valB);
         }));
+
+    },
+
+    /**
+     * 改变arrow方向
+     */
+    changeArrowAction: function() {
+        $('.arrow').on('click', function() {
+            if($(this).is(".right_arrow")) {
+                $(this).removeClass("right_arrow").addClass("bottom_arrow");
+                $(this).parent().next().slideDown();
+            } else {
+                $(this).removeClass("bottom_arrow").addClass("right_arrow");
+                $(this).parent().next().slideUp();
+            }
+        });
     },
     
     /**
@@ -270,7 +312,7 @@ var Util = {
         return format; 
     },
 
-    ChangeActive: function() {
+    changeActive: function() {
         var urlpath = window.location.pathname;
 
         //改变当前所选页面CSS

@@ -8,7 +8,7 @@
     <link type="text/css" rel="stylesheet" href="/css/common.css">
     <link type="text/css" rel="stylesheet" href="/css/foreground.css" />
     <script type="text/javascript" src="/js/lib/jquery-1.10.2.js"></script>
-    <title>Welcome to SunnyZone</title>
+    <title>Welcome to MyBlog</title>
 </head>
 <body>
 <%@include file="/page/foreground/common/header.jsp"%>
@@ -76,7 +76,6 @@
 
 <%@include file="/page/foreground/common/footer.jsp"%>
 
-<s:debug/>
 </body>
 <script type="text/javascript" src="/js/admin/foreground.js"></script>
 <script type="text/javascript" src="/js/common.js"></script>

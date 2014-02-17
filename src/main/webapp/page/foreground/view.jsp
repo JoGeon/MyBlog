@@ -55,4 +55,5 @@
 </body>
 <script type="text/javascript" src="/js/admin/foreground.js"></script>
 <script type="text/javascript" src="/js/admin/comment.js"></script>
+<script type="text/javascript" src="/js/common.js"></script>
 </html>

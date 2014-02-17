@@ -21,21 +21,15 @@ $(document).ready(function() {
     if( typeof comment  != "undefined") {
         comment.FsubmitOnClick();
         comment.FinitOnClick();
-    }
 
-    $('.arrow').on('click', function() {
-        if($(this).is(".right_arrow")) {
-            $(this).removeClass("right_arrow").addClass("bottom_arrow");
-            $(this).parent().next().slideDown();
-        } else {
-            $(this).removeClass("bottom_arrow").addClass("right_arrow");
-            $(this).parent().next().slideUp();
-        }
-    });
+    }
 
     if(typeof Util  != "undefined") {
-        Util.ChangeActive();
+        Util.changeArrowAction();
+        Util.changeActive();
+        Util.backToTop();
     }
+
 
     $(document).ajaxStart(function() {
         $('#loading').show();

@@ -6,7 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>loading web page</title>
+<script type="text/javascript" src="/js/lib/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="/js/common.js"></script>
 <script type="text/javascript">
+//    Util.killIE();
   	location.href="home" ;
 </script>
 </head>
