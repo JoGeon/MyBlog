@@ -91,13 +91,19 @@
 
     </package>
 
-    <package name="submitComment" namespace="/blog/comment" extends="json-default">
+    <package name="submitComment" namespace="/foreground" extends="json-default">
 
         <action name="submitComment" class="commentAction" method="saveComment">
             <result name="success" type="json"/>
             <interceptor-ref name="json"/>
             <interceptor-ref name="timer"/>
             <interceptor-ref name="defaultStack"/>
+        </action>
+
+        <action name="getWebCounter" class ="blogMainAction" method="findWebCount">
+            <result name="success" type="json">
+                <param name="includeProperties">onlieCount,visitCount</param>
+            </result>
         </action>
 
     </package>
