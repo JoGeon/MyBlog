@@ -26,7 +26,7 @@ public class CacheContextBeanPostProcessor implements BeanPostProcessor {
     static Logger logger = Logger.getLogger(CacheContextBeanPostProcessor.class.getName());
 
     @Autowired
-    private ServletContext context = null;
+    private ServletContext context;
 
     public CacheContextBeanPostProcessor() {
 
@@ -58,14 +58,6 @@ public class CacheContextBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessBeforeInitialization(Object bean, String beanName)
             throws BeansException {
         return bean;
-    }
-
-    public ServletContext getContext() {
-        return context;
-    }
-
-    public void setContext(ServletContext context) {
-        this.context = context;
     }
 
 }

@@ -28,6 +28,7 @@ $(document).ready(function() {
         Util.changeArrowAction();
         Util.changeActive();
         Util.backToTop();
+        Util.loadCounter();
     }
 
 

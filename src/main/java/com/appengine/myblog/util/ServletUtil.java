@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -46,6 +47,13 @@ public class ServletUtil {
             ip = baeIP[0];
         }
         return ip;
+    }
+
+    public static Calendar organizeDate(Date date) {
+        if(date == null) return null;
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
     }
 
 

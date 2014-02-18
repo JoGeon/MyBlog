@@ -34,16 +34,16 @@ var comment = function () {
 
             $.ajax({
                 type: "POST",
-                url: "comment/submitComment",
+                url: "/foreground/submitComment",
                 cache: false,
                 dataType: 'json',
                 async: false,
                 contentType: 'application/json; charset=utf-8',
                 data: JSON.stringify(JSONObject)
             }).done(function (data) {
-                    if(data.resultMessage == "sucess") {
+                    if(data.resultMessage == "success") {
                         $(".comment_list").prepend('<div class="comment_info">' +
-                            '<span id="commentLevel">' + data.comment.commentLevel + '</span>楼' +
+                            '<a href="#'+data.comment.commentLevel +'"><span id="commentLevel">' + data.comment.commentLevel + '</span>楼</a>' +
                             '<span id="commentName">' + data.comment.commentName + '</span>' +
                             '<span> [' + data.comment.commentTime +']说：</span>' +
                             '<a class="recomment" href="#comment-text">回复</a></div>' +
@@ -79,7 +79,7 @@ var comment = function () {
 //        var commentContent = jComment.parent().next().html().trim();
         var  commentLevel = jComment.parent().find("#commentLevel").text().trim();
         var quoteContent ="<blockquote>\r\n" +
-            "<pre>回复 <span class='commentlevel'> " +commentLevel+"楼: </span>"+commentName + "：</pre>\r\n"
+            "<pre>回复  <a href='#"+ commentLevel + "'><span class='commentlevel'>" +commentLevel+"楼: </span></a>"+commentName + "：</pre>\r\n"
              + "</blockquote>\r\n" ;
         $("#comment").val(quoteContent);
     }

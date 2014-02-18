@@ -64,7 +64,15 @@ var Util = {
     },
 
     loadCounter: function() {
-        $("#counter").load();
+        setInterval(function() {
+            $.get("/foreground/getWebCounter", function(data, textStatus) {
+                if(textStatus == "success") {
+//                    console.log(data.onlineCounter + data.visitorCounter);
+                    $(".onlineCount span").text(data.onlineCounter);
+                    $(".visitorCount span").text(data.visitorCounter);
+                }
+            }, "json")
+        }, 60000);
     },
     
     /**

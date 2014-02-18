@@ -9,7 +9,7 @@
 
             <div class="comment_list">
                 <s:iterator  value="#article.comments" status="state">
-                    <div class="comment_info">
+                    <div class="comment_info" id='<s:property value="commentLevel"/>'>
                         <span id="commentLevel"><s:property value="commentLevel"/></span>楼
                         <span id="commentName"><s:property value="commentName"/></span>
                         <span>[<s:date name="commentTime" format="yyyy-MM-dd  HH:mm"/>]说：</span>

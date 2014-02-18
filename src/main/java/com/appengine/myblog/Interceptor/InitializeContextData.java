@@ -56,36 +56,34 @@ public class InitializeContextData extends AbstractInterceptor {
                 List<Article> listArticles = blogMainAction.findHotArticles();
                 ActionContext.getContext().getSession().put("articleList", listArticles);
             }
-        }
 
-        String result = invocation.invoke();
+            //增加在线访问人数
+            Map<String, Object> session = invocation.getInvocationContext().getSession();
 
-        //增加在线访问人数
-        Map<String, Object> session = invocation.getInvocationContext().getSession();
+            if (session.get("visitInfo") == null) {
+                //设置当前访问者的相关信息并记录总访问量
+                HttpServletRequest request = ServletActionContext.getRequest();
+                String ip = ServletUtil.getIpAddr(request);
 
-        if (session.get("visitInfo") == null) {
-            //设置当前访问者的相关信息并记录总访问量
-            HttpServletRequest request = ServletActionContext.getRequest();
-            String ip = ServletUtil.getIpAddr(request);
-
-            //增加访问次数
+                //增加访问次数
 //			int visitCount =(Integer)ActionContext.getContext().get("visitorMaxCount");
-            long visitCount = (Long) ServletActionContext.getServletContext().getAttribute("visitorMaxCount");
-            visitCount++;
-            //设置新的环境变量
-            ServletActionContext.getServletContext().setAttribute("visitorMaxCount", visitCount);
-            //多少位访客
-            Visitor visitor = new Visitor();
-            visitor.setOnlineIP(ip);
-            visitor.setOnlineCount(visitCount);
-            visitor.setOnlienDate(new Date());
-            session.put("visitInfo", visitor);
-            if(blogMainAction !=null) {
-                blogMainAction.saveVisitor(visitor);
+                long visitCount = (Long) ServletActionContext.getServletContext().getAttribute("visitorMaxCount");
+                visitCount++;
+                //设置新的环境变量
+                ServletActionContext.getServletContext().setAttribute("visitorMaxCount", visitCount);
+                //多少位访客
+                Visitor visitor = new Visitor();
+                visitor.setOnlineIP(ip);
+                visitor.setOnlineCount(visitCount);
+                visitor.setOnlienDate(new Date());
+                session.put("visitInfo", visitor);
+                if(blogMainAction !=null) {
+                    blogMainAction.saveVisitor(visitor);
+                }
+                logger.info("访客增加，当前第" + visitCount + "位访客！");
             }
-            logger.info("访客增加，当前第" + visitCount + "位访客！");
         }
 
-        return result;
+        return invocation.invoke();
     }
 }

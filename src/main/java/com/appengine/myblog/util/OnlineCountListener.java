@@ -1,8 +1,11 @@
 package com.appengine.myblog.util;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.ServletContext;
+import javax.servlet.ServletContextEvent;
+import javax.servlet.ServletContextListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
@@ -16,11 +19,11 @@ import javax.servlet.http.HttpSessionListener;
  * @version 1.0
  * @date 2013年12月20日
  */
-public class OnlineCountListener implements HttpSessionListener {
+public class OnlineCountListener implements HttpSessionListener, ServletContextListener {
 
     static Logger logger = Logger.getLogger(OnlineCountListener.class.getName());
 
-    private ServletContext context = null;
+    private ServletContext context;
 
     /**
      * 保存访问者的基本信息，并统计访问累计数，当前在线数。
@@ -32,7 +35,6 @@ public class OnlineCountListener implements HttpSessionListener {
     public void sessionCreated(HttpSessionEvent se) {
         logger.info("在线用户增加！");
         long count = 0;
-        context = se.getSession().getServletContext();
         if (context.getAttribute("onlineCount") != null) {
             count = (Long) context.getAttribute("onlineCount");
         }
@@ -49,5 +51,15 @@ public class OnlineCountListener implements HttpSessionListener {
         OnlineCountStatistics.decreaseCount();
         logger.info("当前在线用户数量" + OnlineCountStatistics.getCount());
         context.setAttribute("onlineCount", OnlineCountStatistics.getCount());
+    }
+
+    @Override
+    public void contextInitialized(ServletContextEvent sce) {
+        context = sce.getServletContext();
+    }
+
+    @Override
+    public void contextDestroyed(ServletContextEvent sce) {
+
     }
 }

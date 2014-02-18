@@ -8,6 +8,7 @@ import com.appengine.myblog.service.AuthorService;
 import com.appengine.myblog.service.VisitorInfoService;
 import com.appengine.myblog.util.BlogConstant;
 import com.appengine.myblog.util.ServletUtil;
+import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
 import com.appengine.myblog.service.ArticleService;
@@ -56,6 +57,11 @@ public class BlogMainAction {
     private List<Article> listArticles = new ArrayList<Article>();
 
     private List<ArticleType> listArticleTypes = new ArrayList<ArticleType>();
+
+    private String onlieCount = "";
+
+    private String visitCount = "";
+
 
     public BlogMainAction() {
 
@@ -167,10 +173,12 @@ public class BlogMainAction {
             articleList = new ArrayList<>();
             //数据库查询出来的Article信息
             List article = (List) it.next();
+
             //格式化日期作为Map的主键
-//            String year = ServletUtil.formatDate(String.valueOf(article.get(2)));
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime((Date)article.get(2));
+            Calendar calendar  = ServletUtil.organizeDate((Date)article.get(2));
+
+            if( calendar == null) return BlogConstant.ERROR;
+
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
             int day = calendar.get(Calendar.DAY_OF_MONTH);
@@ -285,6 +293,15 @@ public class BlogMainAction {
         visitInfoService.save(visitInfo);
     }
 
+
+    public String findWebCount() {
+        String onlineCounter = String.valueOf(ActionContext.getContext().getApplication().get("onlineCount"));
+        String visitorCounter = String.valueOf(ActionContext.getContext().getApplication().get("visitorMaxCount"));
+        setOnlieCount(onlineCounter);
+        setVisitCount(visitorCounter);
+        return BlogConstant.SUCCESS;
+    }
+
     /**
      * setter和getter方法
      *
@@ -338,4 +355,19 @@ public class BlogMainAction {
         this.listArticleTypes = listArticleTypes;
     }
 
+    public String getOnlieCount() {
+        return onlieCount;
+    }
+
+    public void setOnlieCount(String onlieCount) {
+        this.onlieCount = onlieCount;
+    }
+
+    public String getVisitCount() {
+        return visitCount;
+    }
+
+    public void setVisitCount(String visitCount) {
+        this.visitCount = visitCount;
+    }
 }

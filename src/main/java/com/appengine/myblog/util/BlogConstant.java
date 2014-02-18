@@ -18,11 +18,11 @@ public class BlogConstant {
 
     public static final String UPDATESUCESS = "更新成功！";
 
-    public static final String COMMENTSUCESS = "评论成功！";
+    public static final String COMMENTSUCESS = "success";
 
     public static final String SUCCESS = "success";
 
-    public static final String INPUT = "Input";
+    public static final String INPUT = "input";
 
     public static final String ERROR ="error";
 
