@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@include file="/page/commons/taglibs.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>后台管理</title>
-<link type="text/css" rel="stylesheet" href="/css/common.css">
-<link type="text/css" rel="stylesheet" href="/css/background.css" />
-<script type="text/javascript" src="/js/lib/jquery-1.10.2.js"></script>
+<link type="text/css" rel="stylesheet" href="${ctx}/css/common.css">
+<link type="text/css" rel="stylesheet" href="${ctx}/css/background.css" />
+<script type="text/javascript" src="${ctx}/js/lib/jquery-1.10.2.js"></script>
 <script type="text/javascript"
-	src="/js/lib/kindeditor/kindeditor-min.js"></script>
+	src="${ctx}/js/lib/kindeditor/kindeditor-min.js"></script>
+    <script type="text/javascript">
+       var ctx = "${ctx}"
+    </script>
 </head>
 <body>
 	<div id="header">
@@ -23,7 +26,7 @@
 			<div class="top_left">欢迎登录blog后台管理</div>
 			<div class="top_right">
 				<a href="admin" title="admin">admin</a> 
-				<a href="/home" title="首页">首页</a> 
+				<a href="${ctx}/home" title="首页">首页</a>
 				<a href="javascript:logout();" title="登出">登出</a>
 			</div>
 		</div>
@@ -92,9 +95,9 @@
 		</div>
 	</div>
 </body>
-<script type="text/javascript" src="/js/admin/admin.js"></script>
-<script type="text/javascript" src="/js/admin/articleList.js"></script>
-<script type="text/javascript" src="/js/admin/publishArticle.js"></script>
-<script type="text/javascript" src="/js/admin/editor.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/admin.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/articleList.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/publishArticle.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/editor.js"></script>
+<script type="text/javascript" src="${ctx}/js/common.js"></script>
 </html>

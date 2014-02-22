@@ -8,6 +8,7 @@ import com.appengine.myblog.service.AuthorService;
 import com.appengine.myblog.service.VisitorInfoService;
 import com.appengine.myblog.util.BlogConstant;
 import com.appengine.myblog.util.ServletUtil;
+import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
@@ -36,6 +37,8 @@ import com.opensymphony.xwork2.ActionContext;
  */
 @Controller
 public class BlogMainAction {
+
+    static Logger logger = Logger.getLogger(BlogMainAction.class.getName());
 
     @Resource
     ArticleService articleService;
@@ -166,7 +169,8 @@ public class BlogMainAction {
         String hql = "select new List(a.articleTitle, a.articleLink, a.articlePublishTime) from Article as a  where a.isPublish = 1";
         List pageArticle = articleService.findAllArticle(hql);
         //处理归档内容
-        Map<Integer, Map<Integer, Map<Integer, List<List>>>> mapArchive = new HashMap<Integer, Map<Integer, Map<Integer, List<List>>>>();
+        long start = System.currentTimeMillis();
+        Map<String, Map<String, Map<String, List<List>>>> mapArchive = new HashMap<String, Map<String, Map<String, List<List>>>>();
         List<List> articleList;
         for (Iterator it = pageArticle.iterator(); it.hasNext(); ) {
             //存放归档信息的List
@@ -175,50 +179,101 @@ public class BlogMainAction {
             List article = (List) it.next();
 
             //格式化日期作为Map的主键
-            Calendar calendar  = ServletUtil.organizeDate((Date)article.get(2));
+            String[] calendar  = ServletUtil.organizeDate((Date)article.get(2));
 
             if( calendar == null) return BlogConstant.ERROR;
 
-            int year = calendar.get(Calendar.YEAR);
-            int month = calendar.get(Calendar.MONTH);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
             //查找该日期KEY确定集合里面是否有该日期记录
             //处理年
-            Map<Integer, Map<Integer, List<List>>> mapMonth = mapArchive.get(year);
+            Map<String, Map<String, List<List>>> mapMonth = mapArchive.get(calendar[0]);
             if (mapMonth != null && mapMonth.size() > 0) {
                 //处理日
-                Map<Integer, List<List>> mapDay = mapMonth.get(month);
+                Map<String, List<List>> mapDay = mapMonth.get(calendar[1]);
                 if(mapDay != null && mapDay.size() > 0) {
-                    List<List> list = mapDay.get(day);
+                    List<List> list = mapDay.get(calendar[2]);
                     if(list != null && list.size() > 0) {
                         //存在则直接添加List
                         list.add(article);
-                        mapDay.put(day, list);
+                        mapDay.put(calendar[2], list);
                     } else {
                         //不存在日的，则添加到日文章里面
                         articleList.add(article);
-                        mapDay.put(day, articleList);
+                        mapDay.put(calendar[2], articleList);
                     }
                 } else {
                     //不存在月的，则添加到月文章里面
                     articleList.add(article);
-                    HashMap<Integer, List<List>> archivedaylist = new HashMap<>();
-                    archivedaylist.put(day, articleList);
-                    mapMonth.put(month, archivedaylist);
+                    HashMap<String, List<List>> archivedaylist = new HashMap<>();
+                    archivedaylist.put(calendar[2], articleList);
+                    mapMonth.put(calendar[1], archivedaylist);
                 }
             } else {
                 //如果不存在，则添加到新的key-value对中
                 articleList.add(article);
-                Map<Integer, List<List>> archiveday = new HashMap<Integer, List<List>>();
-                archiveday.put(day, articleList);
-                Map<Integer, Map<Integer,List<List>>> archiveMonth = new HashMap<Integer, Map<Integer,List<List>>>();
-                archiveMonth.put(month, archiveday);
-                mapArchive.put(year,archiveMonth);
+                Map<String, List<List>> archiveday = new HashMap<String, List<List>>();
+                archiveday.put(calendar[2], articleList);
+                Map<String, Map<String,List<List>>> archiveMonth = new HashMap<String, Map<String,List<List>>>();
+                archiveMonth.put(calendar[1], archiveday);
+                mapArchive.put(calendar[0],archiveMonth);
             }
         }
-
+        long end = System.currentTimeMillis();
+        logger.info( end-start + "ms");
         ActionContext.getContext().put("archive", mapArchive);
         return BlogConstant.SUCCESS;
+    }
+
+
+    /**
+     * 查看归档下的文章
+     *
+     * @return success
+     */
+    public String viewArchive() {
+        String[] hql = resolvePublishTime(articleurl);
+
+        List<Article> pageArticle = articleService.findArticleByPage(hql[0], offset - 1, Page.DEFAULT_PAGE_SIZE);
+
+        int pageCount = articleService.getArticleCount(hql[1]);
+
+        int totalPage = 0;
+        Page page = new Page(offset, pageCount);
+        if (pageCount != 0) {
+            totalPage = page.getTotalPageCount();
+        }
+
+        //用于指定当前为category分页地址
+        ActionContext.getContext().put("pageTag", Page.CATEGORY_PAGE_TAG + "/" + articleurl);
+
+        //用于分页显示数据
+        ActionContext.getContext().put("page", page);
+
+        ActionContext.getContext().put("articleCollection", pageArticle);
+        ActionContext.getContext().put("totalPage", totalPage);
+        ActionContext.getContext().put("pageCount", pageCount);
+        //设置分页的初始值为0
+        setOffset(0);
+        return BlogConstant.SUCCESS;
+    }
+
+    private String[] resolvePublishTime(String articleurl) {
+        String[] hql = new String[2];
+        String articleData = ServletUtil.parseURL(articleurl);
+        switch (articleurl.length()) {
+            case 4:
+                hql[0] = "from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleData +"%" + "' order by a.articlePublishTime DESC";
+                hql[1] = "select count(*) from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleurl +"%'";
+                break;
+            case 6:
+                hql[0] = "from Article as a  where a.isPublish = 1 and a.articlePublishTime like'" + articleData + "%" + "' order by a.articlePublishTime DESC";
+                hql[1] = "select count(*) from Article as a  where a.isPublish = 1 and a.articlePublishTime like'" + articleurl +"%'";
+                break;
+            case 8:
+                hql[0] = "from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleData + "%" + "' order by a.articlePublishTime DESC";
+                hql[1] = "select count(*) from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleData +"%'";
+                break;
+        }
+        return hql;
     }
 
     /**

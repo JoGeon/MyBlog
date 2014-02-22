@@ -49,11 +49,14 @@ public class ServletUtil {
         return ip;
     }
 
-    public static Calendar organizeDate(Date date) {
+    public static String[] organizeDate(Date date) {
         if(date == null) return null;
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        return calendar;
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        String month = calendar.get(Calendar.MONTH) > 9 ?  String.valueOf(calendar.get(Calendar.MONTH) +1) : "0" + (calendar.get(Calendar.MONTH) +1);
+        String day = calendar.get(Calendar.DAY_OF_MONTH) > 9 ? String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) : "0" + calendar.get(Calendar.DAY_OF_MONTH);
+        return new String[] {year, month, day};
     }
 
 
@@ -72,5 +75,25 @@ public class ServletUtil {
             e.printStackTrace();
         }
         return date;
+    }
+
+    public static String parseURL(String url) {
+        if(url.length() == 4 ) return url;
+        StringBuilder sb =  new StringBuilder();
+        switch (url.length()) {
+            case 6:
+                sb.append(url.substring(0,4));
+                sb.append("-");
+                sb.append(url.substring(4,6));
+                break;
+            case 8:
+                sb.append(url.substring(0,4));
+                sb.append("-");
+                sb.append(url.substring(4,6));
+                sb.append("-");
+                sb.append(url.substring(6,8));
+                break;
+        }
+        return sb.toString();
     }
 }

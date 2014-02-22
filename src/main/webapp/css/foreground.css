@@ -8,7 +8,7 @@
 }
 
 .welcomepic {
-    background: url("/img/welcome.png") no-repeat scroll 20px 10px transparent;
+    background: url("../img/welcome.png") no-repeat scroll 20px 10px transparent;
     height: 136px;
 }
 
@@ -515,7 +515,7 @@
 }
 
 .footerbanner {
-    background: url("/img/global_bg.jpg") repeat center center;
+    background: url("../img/global_bg.jpg") repeat center center;
     widthi: 100%;
     margin: 10px 0 0 0;
     clear:both;

@@ -13,8 +13,8 @@ var articleList = function() {
                         $('.articleinfo table tbody').append(
                             '<tr> <td class="tdtitle">'+ article.articleTitle + 
                                 '<div class="row-action">' +
-                                   '<span class="view"><a href="/blog/' + article.articleLink +'" title="' + article.articleTitle + '" target="_blank">查看</a></span>' +
-                                   '<span class="edit"><a href="/background/admin#publish-article">编辑</a><span>' +article.articleid+'</span></span>'+
+                                   '<span class="view"><a href="'+ctx +'/blog/' + article.articleLink +'" title="' + article.articleTitle + '" target="_blank">查看</a></span>' +
+                                   '<span class="edit"><a href="'+ctx +'/background/admin#publish-article">编辑</a><span>' +article.articleid+'</span></span>'+
                                  '</div>' +"</td>"+
                             '<td>'+ article.articleType.articleTypeName + '</td>'+
                             '<td>'+ article.articleTags + '</td>'+

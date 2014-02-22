@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="/page/commons/taglibs.jsp"%>
 <div id="headerbanner">
 	<div class="wrap titlebanner clearfix">
 		<div class="welcomepic">
@@ -15,10 +16,10 @@
 	          </form>
 	        </div>
 			<ul id="nav">
-				<li id="home"><a href="/home"> 首页</a></li>
-				<li id="category"><a href="/category">分类</a></li>
-				<li id="archive"><a href="/archive">归档</a></li>
-				<li id="about"><a href="/about">关于</a></li>
+				<li id="home"><a href="${ctx}/home"> 首页</a></li>
+				<li id="category"><a href="${ctx}/category">分类</a></li>
+				<li id="archive"><a href="${ctx}/archive">归档</a></li>
+				<li id="about"><a href="${ctx}/about">关于</a></li>
 			</ul>
 		</div>
 	</div>

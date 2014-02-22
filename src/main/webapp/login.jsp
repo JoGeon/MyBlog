@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@include file="/page/commons/taglibs.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="/css/common.css">
-<link type="text/css" rel="stylesheet" href="/css/background.css" />
+<link type="text/css" rel="stylesheet" href="${ctx}/css/common.css">
+<link type="text/css" rel="stylesheet" href="${ctx}/css/background.css" />
 <title>登录</title>
 </head>
 <body class="loginPage">
 	<div class="container">
 		<div class="login">
 			<h1>Login</h1>
-			<form method="post" action="/background/admin">
+			<form method="post" action="${ctx}/background/admin">
                 <!--p class="errMessage">
                     <s:if test="#error != null">
                         <s:property value="#error"/>

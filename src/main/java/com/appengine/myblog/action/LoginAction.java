@@ -60,8 +60,8 @@ public class LoginAction {
                 }
             }
         }
-        ServletActionContext.getPageContext().setAttribute(BlogConstant.ERROR, "用户名或密码错误！");
-        return BlogConstant.LOGIN;
+        ActionContext.getContext().getParameters().put(BlogConstant.ERROR, "用户名或密码错误！");
+        return BlogConstant.INPUT;
     }
 
 

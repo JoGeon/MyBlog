@@ -246,6 +246,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>taglibs</groupId>
+            <artifactId>standard</artifactId>
+            <version>1.1.2</version>
+        </dependency>
+
         <!--BAE3.0-->
         <dependency>
             <groupId>com.baidu.bae</groupId>
@@ -318,7 +324,7 @@
     </repositories>
 
     <build>
-        <finalName>MyBlog</finalName>
+        <finalName>myblog</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -374,6 +380,9 @@
                         <port>8088</port>
                     </httpConnector>
                     <scanIntervalSeconds>5</scanIntervalSeconds>
+                    <webAppConfig>
+                        <contextPath>/${project.build.finalName}</contextPath>
+                    </webAppConfig>
                 </configuration>
             </plugin>
 

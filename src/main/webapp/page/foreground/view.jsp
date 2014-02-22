@@ -1,13 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@include file="/page/commons/taglibs.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="/css/common.css">
-<link type="text/css" rel="stylesheet" href="/css/foreground.css" />
-<script type="text/javascript" src="/js/lib/jquery-1.10.2.js"></script>
+<link type="text/css" rel="stylesheet" href="${ctx}/css/common.css">
+<link type="text/css" rel="stylesheet" href="${ctx}/css/foreground.css" />
+<script type="text/javascript" src="${ctx}/js/lib/jquery-1.10.2.js"></script>
+    <script type="text/javascript">
+        var ctx = "${ctx}"
+    </script>
 <title><s:property value="articleurl"/></title>
 </head>
 <body>
@@ -20,12 +23,12 @@
 				<!-- begin content -->
 					<div class="content">
 						<div class="tit clearfix">
-							 <h1><a href='/blog/<s:property value="#article.articleLink"/>'><s:property value="#article.articleTitle"/></a></h1>
-							 <a class="comment right" title="评论"href="/blog/<s:property value="#article.articleLink"/>#comments">共<s:property value="#article.comments.size()"/>条评论</a>
+							 <h1><a href='${ctx}/blog/<s:property value="#article.articleLink"/>'><s:property value="#article.articleTitle"/></a></h1>
+							 <a class="comment right" title="评论"href="${ctx}/blog/<s:property value="#article.articleLink"/>#comments">共<s:property value="#article.comments.size()"/>条评论</a>
 						</div>
 						<div class="text">
 							<div class="infor_tag">
-								<a class="tag" rel="tag" href='/tag/<s:property value="#article.articleTags"/>'>
+								<a class="tag" rel="tag" href='${ctx}/tag/<s:property value="#article.articleTags"/>'>
 									<span><s:property value="#article.articleTags"/></span>
 								</a>
 							</div>
@@ -53,7 +56,7 @@
 
 <%@include file="/page/foreground/common/footer.jsp"%>
 </body>
-<script type="text/javascript" src="/js/admin/foreground.js"></script>
-<script type="text/javascript" src="/js/admin/comment.js"></script>
-<script type="text/javascript" src="/js/common.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/foreground.js"></script>
+<script type="text/javascript" src="${ctx}/js/admin/comment.js"></script>
+<script type="text/javascript" src="${ctx}/js/common.js"></script>
 </html>

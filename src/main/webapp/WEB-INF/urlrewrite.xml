@@ -103,7 +103,7 @@
 			<to>$1.action</to>
 		</rule>
 		-->
-		
+
     <rule>
         <from>^/background/articledata/(\w+-?\w+)servlet$</from>
         <to>/page/background/article/$1.html</to>
@@ -116,7 +116,7 @@
 
     <rule>
         <note>^([/[a-z]+]*\b-?((?!servlet)\w)+\b)$ The rule will forword *.action but not *servlet or /  or /*/ or .jsp or .xxx  ^([/[a-z]+]*(\b-?((?!servlet)\w)+-?#?\b)+)$ #....</note>
-        <from>^([/[a-z]+]*(\b-?((?!servlet)\w)+-?#?\b)+)$</from>
+        <from>^([/[a-z0-9]+]*(\b-?((?!servlet)\w)+-?#?\b)+)$</from>
         <to>$1.action</to>
     </rule>
 

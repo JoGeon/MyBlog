@@ -1,5 +1,7 @@
 var Util = {
-    
+     contextPaht : function() {
+         return "${ctx}";
+     },
     /**
      *@description 操作tab的css
      */
@@ -67,9 +69,9 @@ var Util = {
         setInterval(function() {
             $.get("/foreground/getWebCounter", function(data, textStatus) {
                 if(textStatus == "success") {
-//                    console.log(data.onlineCounter + data.visitorCounter);
-                    $(".onlineCount span").text(data.onlineCounter);
-                    $(".visitorCount span").text(data.visitorCounter);
+                    console.log(data.onlieCount + data.visitCount);
+                    $(".onlineCount span").text(data.onlieCount);
+                    $(".visitorCount span").text(data.visitCount);
                 }
             }, "json")
         }, 60000);

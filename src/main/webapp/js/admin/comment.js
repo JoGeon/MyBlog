@@ -34,7 +34,7 @@ var comment = function () {
 
             $.ajax({
                 type: "POST",
-                url: "/foreground/submitComment",
+                url: ctx +"/foreground/submitComment",
                 cache: false,
                 dataType: 'json',
                 async: false,

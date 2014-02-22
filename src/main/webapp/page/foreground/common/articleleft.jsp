@@ -1,16 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@include file="/page/commons/taglibs.jsp"%>
 <div class="articleleft">
 <!-- begin content -->
 <s:iterator value="#articleCollection">
 	<div class="content">
 		<div class="tit clearfix">
-			 <a href='/blog/<s:property value="articleLink"/>'><s:property value="articleTitle"/></a>
+			 <a href='${ctx}/blog/<s:property value="articleLink"/>'><s:property value="articleTitle"/></a>
 		</div>
 		<div class="text">
 			<div class="infor_tag">
-				<a class="tag" rel="tag" href='/tag/<s:property value="articleTags"/>'>
+				<a class="tag" rel="tag" href='${ctx}/tag/<s:property value="articleTags"/>'>
 					<span><s:property value="articleTags"/></span>
 				</a>
 			</div>
