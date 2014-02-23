@@ -1,22 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@include file="/page/commons/taglibs.jsp"%>
+<%@include file="/jsp/commons/taglibs.jsp"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${ctx}/css/common.css">
-<link type="text/css" rel="stylesheet" href="${ctx}/css/foreground.css" />
-<script type="text/javascript" src="${ctx}/js/lib/jquery-1.10.2.js"></script>
-    <script type="text/javascript">
-        var ctx = "${ctx}"
-    </script>
+<%@include file="/jsp/commons/static.jsp"%>
 <title><s:property value="articleurl"/></title>
 </head>
 <body>
 <div id="container">
 
-        <%@include file="/page/foreground/common/header.jsp"%>
+        <%@include file="/jsp/front/common/header.jsp"%>
 
 		<div class="wrap clearfix">
 			<div class="articlecon">
@@ -47,17 +41,14 @@
 				<!-- end content -->
 				</div>
 			</div>
-			<%@include file="/page/foreground/common/right.jsp"%>
+			<%@include file="/jsp/front/common/right.jsp"%>
 
             <!-- comment -->
-            <%@include file="/page/foreground/comment.jsp"%>
+            <%@include file="/jsp/front/common/comment.jsp"%>
 
 			</div>
 
-            <%@include file="/page/foreground/common/footer.jsp"%>
+            <%@include file="/jsp/front/common/footer.jsp"%>
 		</div>
 </body>
-<script type="text/javascript" src="${ctx}/js/admin/foreground.js"></script>
-<script type="text/javascript" src="${ctx}/js/admin/comment.js"></script>
-<script type="text/javascript" src="${ctx}/js/common.js"></script>
 </html>

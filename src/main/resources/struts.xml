@@ -17,7 +17,7 @@
     <package name="default" extends="struts-default">
         <default-action-ref name="notFound" />
         <action name="notFound">
-            <result>/page/error/404.jsp</result>
+            <result>/jsp/error/404.jsp</result>
         </action>
     </package>
 
@@ -36,51 +36,51 @@
 
         <default-interceptor-ref name="blogInterceptor"/>
         <action name="home" class="blogMainAction">
-            <result name="success">/page/foreground/index.jsp</result>
+            <result name="success">/jsp/front/index.jsp</result>
         </action>
 
 
         <!-- 访问文章 -->
         <action name="/blog/*" class="blogMainAction" method="viewArticle">
-            <result name="success">/page/foreground/view.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
+            <result name="success">/jsp/front/view.jsp</result>
+            <result name="error">/jsp/error/404.jsp</result>
             <param name="articleurl">{1}</param>
         </action>
 
         <!--访问分类文章-->
         <action name="category" class="blogMainAction" method="showCategory">
-            <result name="success">/page/foreground/category.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
+            <result name="success">/jsp/front/category.jsp</result>
+            <result name="error">/jsp/error/404.jsp</result>
         </action>
 
         <action name="/category/*" class="blogMainAction" method="viewCategory">
-            <result name="success">/page/foreground/index.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
+            <result name="success">/jsp/front/index.jsp</result>
+            <result name="error">/jsp/error/404.jsp</result>
             <param name="articleurl">{1}</param>
         </action>
 
         <!--访问文章归类-->
         <action name="archive" class="blogMainAction" method="showArchive">
-            <result name="success">/page/foreground/archive.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
+            <result name="success">/jsp/front/archive.jsp</result>
+            <result name="error">/jsp/error/404.jsp</result>
         </action>
 
         <action name="/archive/**" class="blogMainAction" method="viewArchive">
-            <result name="success">/page/foreground/index.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
+            <result name="success">/jsp/front/index.jsp</result>
+            <result name="error">/jsp/error/404.jsp</result>
             <param name="articleurl">{1}</param>
         </action>
 
 
         <!--文章关于-->
         <action name="about" class="blogMainAction" method="showAbout">
-            <result name="success">/page/foreground/about.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
+            <result name="success">/jsp/front/about.jsp</result>
+            <result name="error">/jsp/error/404.jsp</result>
         </action>
 
         <!-- 登录后台业务 -->
         <action name="login" class="loginAction">
-            <result name="input">/login.jsp</result>
+            <result name="input">/jsp/front/login.jsp</result>
             <!--自动登录-->
             <result name="success" type="redirectAction">
                 <param name="actionName">admin</param>
@@ -92,7 +92,7 @@
 
     <package name="backgroundpage" namespace="/background" extends="struts-default">
         <action name="admin" class="loginAction" method="login">
-            <result name="success">/page/background/index.jsp</result>
+            <result name="success">/jsp/backend/index.jsp</result>
             <result name="input" type="redirectAction">
                 <param name="actionName">login</param>
                 <param name="namespace">/</param>

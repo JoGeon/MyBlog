@@ -9,6 +9,5 @@
         <a href="#top" title="back to top"><span></span></a>
     </p>
 
-
-    <%@include file="/page/foreground/common/counter.jsp"%>
+    <%@include file="/jsp/front/common/counter.jsp"%>
   </div>

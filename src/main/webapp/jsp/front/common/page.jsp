@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8"%>
-<%@include file="/page/commons/taglibs.jsp"%>
+<%@include file="/jsp/commons/taglibs.jsp"%>
 <div class="pagination">
     <ul class="pageNav">
         <li>

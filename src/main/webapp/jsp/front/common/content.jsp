@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file="/page/commons/taglibs.jsp"%>
+<%@include file="/jsp/commons/taglibs.jsp"%>
 <div class="articleleft">
 <!-- begin content -->
     <s:iterator value="#articleCollection">
@@ -29,7 +29,7 @@
                     <span class="time"><s:date name="articleCreateTime" format="yyyy-MM-dd  HH:mm"/>发表</span>
                     <span class="edit"><s:date name="articleUpdateTime" format="yyyy-MM-dd HH:mm"/>更新</span>
                     <span class="views" title="浏览次数"><s:property value="readPeople"/>次浏览</span>
-                    <a class="comment" title="评论"href='/blog/<s:property value="articleLink"/>#comments'><s:property value="comments.size()"/></a>
+                    <a class="comment" title="评论"href='${ctx}/blog/<s:property value="articleLink"/>#comments'><s:property value="comments.size()"/></a>
                 </div>
             </div>
         </div>

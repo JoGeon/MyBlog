@@ -26,7 +26,7 @@
 		if you are having trouble using normal levels use sysout:DEBUG (default WARN)-->
 	<init-param>
 		<param-name>logLevel</param-name>
-		<param-value>DEBUG</param-value>
+		<param-value>INFO</param-value>
 	</init-param>
 
 	<!-- you can change status path so that it does not conflict with your installed 

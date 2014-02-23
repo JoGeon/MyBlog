@@ -106,7 +106,7 @@
 
     <rule>
         <from>^/background/articledata/(\w+-?\w+)servlet$</from>
-        <to>/page/background/article/$1.html</to>
+        <to>/jsp/backend/article/$1.html</to>
     </rule>
 
     <rule>
