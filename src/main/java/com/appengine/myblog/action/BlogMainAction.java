@@ -242,8 +242,8 @@ public class BlogMainAction {
             totalPage = page.getTotalPageCount();
         }
 
-        //用于指定当前为category分页地址
-        ActionContext.getContext().put("pageTag", Page.CATEGORY_PAGE_TAG + "/" + articleurl);
+        //用于指定当前为archive分页地址
+        ActionContext.getContext().put("pageTag", Page.ARCHIVE_PAGE_TAG + "/" + articleurl);
 
         //用于分页显示数据
         ActionContext.getContext().put("page", page);

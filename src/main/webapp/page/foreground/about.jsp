@@ -11,15 +11,16 @@
 <title>About me</title>
 </head>
 <body>
-<div id="about">
+<div id="container">
     <%@include file="/page/foreground/common/header.jsp"%>
     <div class="wrap clearfix">
 
 
 
     </div>
+
+    <%@include file="/page/foreground/common/footer.jsp"%>
 </div>
-<%@include file="/page/foreground/common/footer.jsp"%>
 </body>
 <script type="text/javascript" src="${ctx}/js/admin/foreground.js"></script>
 <script type="text/javascript" src="${ctx}/js/common.js"></script>

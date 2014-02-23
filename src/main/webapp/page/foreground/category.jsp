@@ -11,9 +11,9 @@
     <title>Welcome to MyBlog</title>
 </head>
 <body>
-<%@include file="/page/foreground/common/header.jsp"%>
+<div id="container">
 
-<div id="articleType">
+    <%@include file="/page/foreground/common/header.jsp"%>
 
     <div class="wrap clearfix">
 
@@ -42,12 +42,12 @@
             </ul>
         </div>
 
-        <%@include file="/page/foreground/common/articleright.jsp"%>
+        <%@include file="/page/foreground/common/right.jsp"%>
 
     </div>
-</div>
 
-     <%@include file="/page/foreground/common/footer.jsp"%>
+    <%@include file="/page/foreground/common/footer.jsp"%>
+</div>
 </body>
 <script type="text/javascript" src="${ctx}/js/admin/foreground.js"></script>
 <script type="text/javascript" src="${ctx}/js/common.js"></script>

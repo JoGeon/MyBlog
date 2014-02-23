@@ -32,7 +32,3 @@
         </li>
     </ul>
 </div>
-
-
-<div class="push"><!-- not put anything here -->
-</div>

@@ -11,20 +11,21 @@
 <title>Welcome to MyBlog</title>
 </head>
 <body>
-	<div id="articlecontent">
+	<div id="container">
         <%@include file="/page/foreground/common/header.jsp"%>
 
 		<div class="wrap clearfix">
 
-			<%@include file="/page/foreground/common/articleleft.jsp"%>
+			<%@include file="/page/foreground/common/content.jsp"%>
 			
-			<%@include file="/page/foreground/common/articleright.jsp"%>
+			<%@include file="/page/foreground/common/right.jsp"%>
 
             <%@include file="/page/foreground/common/page.jsp"%>
 
 		</div>
+
+        <%@include file="/page/foreground/common/footer.jsp"%>
 	</div>
-    <%@include file="/page/foreground/common/footer.jsp"%>
 </body>
 <script type="text/javascript" src="${ctx}/js/admin/foreground.js"></script>
 <script type="text/javascript" src="${ctx}/js/common.js"></script>

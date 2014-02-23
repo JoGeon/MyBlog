@@ -22,6 +22,8 @@ public class Page {
     //用于分页的pageTag
     public static final String HOME_PAGE_TAG = "home";
     public static final String CATEGORY_PAGE_TAG = "category";
+    public static final String  ARCHIVE_PAGE_TAG ="archive";
+
 
     public static int DEFAULT_PAGE_SIZE = 10;
     private int pageSize = DEFAULT_PAGE_SIZE; // 每页的记录数
