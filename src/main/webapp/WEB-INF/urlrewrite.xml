@@ -111,7 +111,7 @@
 
     <rule>
         <from>^(/\w+/?\w+)/page/([0-9])$</from>
-        <to>$1?offset=$2</to>
+        <to>$1.action?offset=$2</to>
     </rule>
 
     <rule>

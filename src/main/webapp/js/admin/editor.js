@@ -7,9 +7,7 @@ var editor = function() {
         height :'400px',
         langType : 'zh_CN',
         filterMode : true,
-        uploadJson : '../jsp/upload_json.jsp',
-        fileManagerJson : '../jsp/file_manager_json.jsp',
-        llowFileManager : true,
+        uploadJson : '../background/fileUpload',
         resizeType: 1
     };
 

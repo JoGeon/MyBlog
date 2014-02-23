@@ -9,6 +9,7 @@
     <constant name="struts.i18n.reload" value="false"/>
     <constant name="struts.action.extension" value="action"/>
     <constant name="struts.enable.SlashesInActionNames" value="true"/>
+    <constant name="struts.multipart.saveDir" value="/tmp"></constant>
 
     <!-- 指定使用spring对象工厂来创建action -->
     <constant name="struts.objectFactory" value="spring"/>
@@ -64,22 +65,10 @@
             <result name="error">/page/error/404.jsp</result>
         </action>
 
-        <action name="/archive/*" class="blogMainAction" method="viewArchive">
+        <action name="/archive/**" class="blogMainAction" method="viewArchive">
             <result name="success">/page/foreground/index.jsp</result>
             <result name="error">/page/error/404.jsp</result>
             <param name="articleurl">{1}</param>
-        </action>
-
-        <action name="/archive/*/*" class="blogMainAction" method="viewArchive">
-            <result name="success">/page/foreground/index.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
-            <param name="articleurl">{1}{2}</param>
-        </action>
-
-        <action name="/archive/*/*/*" class="blogMainAction" method="viewArchive">
-            <result name="success">/page/foreground/index.jsp</result>
-            <result name="error">/page/error/404.jsp</result>
-            <param name="articleurl">{1}{2}{3}</param>
         </action>
 
 
@@ -175,6 +164,16 @@
         <action name="getAllArticleType" class="blogMainAction" method="findAllArticleType">
             <result name="success" type="json">
                 <param name="excludeProperties">author,^articl\w+,listArticles</param>
+            </result>
+        </action>
+
+        <!--上传文件-->
+        <action name="fileUpload" class="fileUploadAction" method="saveFileUpload">
+            <interceptor-ref name="fileUpload"/>
+            <interceptor-ref name="defaultStack"/>
+            <result type="json">
+                <param name="root">msg</param>
+                <param name="contentType">text/html</param>
             </result>
         </action>
 

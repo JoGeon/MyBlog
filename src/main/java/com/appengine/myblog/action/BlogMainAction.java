@@ -230,7 +230,7 @@ public class BlogMainAction {
      * @return success
      */
     public String viewArchive() {
-        String[] hql = resolvePublishTime(articleurl);
+         String[] hql = resolvePublishTime(articleurl);
 
         List<Article> pageArticle = articleService.findArticleByPage(hql[0], offset - 1, Page.DEFAULT_PAGE_SIZE);
 
@@ -264,11 +264,11 @@ public class BlogMainAction {
                 hql[0] = "from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleData +"%" + "' order by a.articlePublishTime DESC";
                 hql[1] = "select count(*) from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleurl +"%'";
                 break;
-            case 6:
+            case 7:
                 hql[0] = "from Article as a  where a.isPublish = 1 and a.articlePublishTime like'" + articleData + "%" + "' order by a.articlePublishTime DESC";
                 hql[1] = "select count(*) from Article as a  where a.isPublish = 1 and a.articlePublishTime like'" + articleurl +"%'";
                 break;
-            case 8:
+            case 10:
                 hql[0] = "from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleData + "%" + "' order by a.articlePublishTime DESC";
                 hql[1] = "select count(*) from Article as a  where a.isPublish = 1 and a.articlePublishTime like '" + articleData +"%'";
                 break;

@@ -1,7 +1,5 @@
 var Util = {
-     contextPaht : function() {
-         return "${ctx}";
-     },
+
     /**
      *@description 操作tab的css
      */
@@ -67,7 +65,7 @@ var Util = {
 
     loadCounter: function() {
         setInterval(function() {
-            $.get("/foreground/getWebCounter", function(data, textStatus) {
+            $.get( "foreground/getWebCounter", function(data, textStatus) {
                 if(textStatus == "success") {
                     console.log(data.onlieCount + data.visitCount);
                     $(".onlineCount span").text(data.onlieCount);
@@ -326,10 +324,10 @@ var Util = {
         var urlpath = window.location.pathname;
 
         //改变当前所选页面CSS
-        var seltarget = urlpath.split("/",2)[1];
+        var seltarget = urlpath.split("/");
         $("#nav").children("li").each(function( index ) {
-//            console.log( index + ": " + $(this).text() );
-            if($(this).is("#"+seltarget)) {
+//            console.log( index + ": " + this.id + ":" + urlpath.indexOf( this.id) );
+            if(urlpath.indexOf( this.id) > 0 ) {
                 $(this).find("a").addClass("navbaractive");
             } else {
                 $(this).find("a").removeClass("navbaractive");
@@ -337,8 +335,7 @@ var Util = {
         });
 
         //改变当前所选指定页面CSS
-        var index = urlpath.indexOf("page");
-        if(index >= 0) {
+        if(urlpath.indexOf("page") >= 0) {
             var seltarget = urlpath.split("/");
             var selPage = seltarget[seltarget.length-1];
             $(".pageNav").children("li").each(function(index) {

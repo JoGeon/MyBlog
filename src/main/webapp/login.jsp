@@ -44,4 +44,5 @@
 		</div>
 	</div>
 </body>
+<s:debug/>
 </html>

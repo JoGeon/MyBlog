@@ -79,21 +79,6 @@ public class ServletUtil {
 
     public static String parseURL(String url) {
         if(url.length() == 4 ) return url;
-        StringBuilder sb =  new StringBuilder();
-        switch (url.length()) {
-            case 6:
-                sb.append(url.substring(0,4));
-                sb.append("-");
-                sb.append(url.substring(4,6));
-                break;
-            case 8:
-                sb.append(url.substring(0,4));
-                sb.append("-");
-                sb.append(url.substring(4,6));
-                sb.append("-");
-                sb.append(url.substring(6,8));
-                break;
-        }
-        return sb.toString();
+        return url.replaceAll("/", "-");
     }
 }
