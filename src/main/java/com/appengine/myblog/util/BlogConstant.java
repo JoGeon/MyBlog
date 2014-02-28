@@ -28,4 +28,13 @@ public class BlogConstant {
 
     public static final String LOGIN = "login";
 
+    public boolean saveFlieTODB;
+
+    public boolean isSaveFlieTODB() {
+        return saveFlieTODB;
+    }
+
+    public void setSaveFlieTODB(boolean saveFlieTODB) {
+        this.saveFlieTODB = saveFlieTODB;
+    }
 }

@@ -85,5 +85,4 @@
 	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate3.HibernateTemplate"
 		p:sessionFactory-ref="sessionFactory" />
 		
-	<bean id="cacheContextBeanPostProcessor" class="com.appengine.myblog.util.CacheContextBeanPostProcessor"/>
 </beans>

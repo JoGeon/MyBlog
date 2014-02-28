@@ -9,7 +9,7 @@
     <constant name="struts.i18n.reload" value="false"/>
     <constant name="struts.action.extension" value="action"/>
     <constant name="struts.enable.SlashesInActionNames" value="true"/>
-    <constant name="struts.multipart.saveDir" value="/tmp"></constant>
+    <constant name="struts.multipart.saveDir" value="/tmp"/>
 
     <!-- 指定使用spring对象工厂来创建action -->
     <constant name="struts.objectFactory" value="spring"/>
@@ -86,6 +86,16 @@
                 <param name="actionName">admin</param>
                 <param name="namespace">background</param>
             </result>
+        </action>
+
+        <!--访问图片-->
+        <action name="/fileupload/**" class="blogMainAction">
+            <result name="success"  type="stream">
+                <!--下载多种文件，所以支持多种类型的文件的下在-->
+                <param name="inputName">DownloadFile</param>
+                <param name="contentType">application/octet-stream</param>
+            </result>
+            <param name="articleurl">{1}</param>
         </action>
 
     </package>

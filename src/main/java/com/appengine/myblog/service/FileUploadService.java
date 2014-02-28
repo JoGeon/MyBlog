@@ -12,8 +12,8 @@ import com.appengine.myblog.domain.FileUpload;
  */
 public interface FileUploadService {
 
-    public void saveImage(FileUpload fileUpload);
+    public void saveUploadFile(FileUpload fileUpload);
 
-    public FileUpload findImageByName(String hql, Object... params);
+    public FileUpload findFileByName(String hql, Object... params);
 
 }

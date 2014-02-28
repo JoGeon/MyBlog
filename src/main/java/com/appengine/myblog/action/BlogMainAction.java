@@ -1,19 +1,20 @@
 package com.appengine.myblog.action;
 
+import java.io.ByteArrayInputStream;
+import java.io.FileInputStream;
+import java.io.InputStream;
 import java.util.*;
 import javax.annotation.Resource;
 
 import com.appengine.myblog.domain.*;
-import com.appengine.myblog.service.AuthorService;
-import com.appengine.myblog.service.VisitorInfoService;
+import com.appengine.myblog.service.*;
 import com.appengine.myblog.util.BlogConstant;
 import com.appengine.myblog.util.ServletUtil;
 import org.apache.log4j.Logger;
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.json.annotations.JSON;
 import org.springframework.stereotype.Controller;
 
-import com.appengine.myblog.service.ArticleService;
-import com.appengine.myblog.service.ArticleTypeServiec;
 import com.appengine.myblog.util.Page;
 import com.opensymphony.xwork2.ActionContext;
 
@@ -48,6 +49,9 @@ public class BlogMainAction {
 
     @Resource
     VisitorInfoService visitInfoService;
+
+    @Resource
+    FileUploadService fileUploadService;
 
     private Article article;
 
@@ -286,6 +290,20 @@ public class BlogMainAction {
         return BlogConstant.SUCCESS;
     }
 
+
+    /**
+     *  显示图片，其他文件处理下载
+     * @return success
+     */
+    @JSON(serialize = false)
+    public InputStream getDownloadFile() {
+        String hql = "from FileUpload as a  where a.fileDescription = ? and a.fileName = ? ";
+        String[] params = articleurl.split("/");
+        FileUpload fileUpload = fileUploadService.findFileByName(hql, params);
+
+        return new ByteArrayInputStream(fileUpload.getFileBlob());
+    }
+
     /**
      * 查找热门文章，根据访问数量进行排序，并展示5个文章的标题
      *
@@ -425,4 +443,5 @@ public class BlogMainAction {
     public void setVisitCount(String visitCount) {
         this.visitCount = visitCount;
     }
+
 }

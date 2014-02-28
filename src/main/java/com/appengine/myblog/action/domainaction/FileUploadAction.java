@@ -10,13 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * <p>Description: </p>
@@ -37,6 +33,7 @@ public class FileUploadAction {
 
     private String imgFileContentType;
 
+    //图片，视频，Flash等路径
     private String dir;
 
     private String localUrl;
@@ -46,43 +43,49 @@ public class FileUploadAction {
     @Autowired
     FileUploadService fileUploadService;
 
+    @Autowired
+    BlogConstant blogConstant;
+
     public String saveFileUpload() {
-        FileUpload fileUpload = new FileUpload();
 
         String fileName = gainFileName();
         String savePath = gainSavePath();
         String ext = gainExt();
-        ServletActionContext.getResponse().setContentType("text/html");
         ServletActionContext.getResponse().setHeader("cache-control", "no-cache");
         if (!validateExt(ext)) {
             getError("上传文件类型不允许");
             return BlogConstant.SUCCESS;
         }
-        if (imgFile.length() >1024 * 1024 * 1024 ) {
+        if (imgFile.length() >1000000 ) {
             getError("上传文件过大");
             return BlogConstant.SUCCESS;
         }
+
         File saveDir = new File(savePath);
 
-        if (!saveDir.exists()) {
-            getError("上传路径不存在");
-            return BlogConstant.SUCCESS;
-        } else {
-            if (!saveDir.canWrite()) {
-                getError("上传路径没有写权限");
-                return BlogConstant.SUCCESS;
-            }
-        }
-        try {
-            File target = new File(saveDir, fileName);
-            FileUtils.copyFile(imgFile, target);
+        if (blogConstant.isSaveFlieTODB()) {
+            //不支持本地系统写操作保存文件到数据库中
+            saveFiletoDataBase(imgFile, fileName);
 
-//            fileUploadService.saveImage(fileUpload);
+            savePath = ServletActionContext.getRequest().getContextPath() + "/fileupload/" +dir + "/";
+
+            msg.put("error", 0);
+            //上传成功返回文件url地址 。
+            msg.put("url",  savePath + fileName);
+
+            return BlogConstant.SUCCESS;
+        }
+        if (!saveDir.exists())  saveDir.mkdir();
+        try {
+        //支持本地系统直接保存到本地
+        File target = new File(saveDir, fileName);
+        FileUtils.copyFile(imgFile, target);
+
         } catch (Exception e) {
             getError("上传失败");
             return BlogConstant.SUCCESS;
         }
-        savePath = ServletActionContext.getRequest().getContextPath() + "/upload/articleimage/";
+        savePath = ServletActionContext.getRequest().getContextPath() + "/upload/" +dir + "/";
         msg.put("error", 0);
         //上传成功返回文件url地址 。
         msg.put("url", savePath + fileName);
@@ -91,23 +94,59 @@ public class FileUploadAction {
 
     }
 
+    private void saveFiletoDataBase(File imgFile, String fileName) {
+
+        if(!imgFile.exists()) return;
+
+        FileUpload fileUpload = new FileUpload();
+        fileUpload.setFileName(fileName);
+        fileUpload.setFileDescription(getDir());
+        fileUpload.setUploadTime(new Date());
+
+
+        ByteArrayOutputStream bos = new ByteArrayOutputStream((int)imgFile.length());
+        BufferedInputStream in = null;
+        try{
+            in = new BufferedInputStream(new FileInputStream(imgFile));
+            int buf_size = 1024;
+            byte[] buffer = new byte[buf_size];
+            int len;
+            while(-1 != (len = in.read(buffer,0,buf_size))){
+                bos.write(buffer,0,len);
+            }
+            fileUpload.setFileBlob(bos.toByteArray());
+        }catch (IOException e) {
+            e.printStackTrace();
+        }finally{
+            try{
+                if(in != null) {
+                    in.close();
+                }
+                bos.close();
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        fileUploadService.saveUploadFile(fileUpload);
+    }
+
 
     /**
      * 获取图片储存路径 根目录+ upload/articleImg
      *
-     * @return
+     * @return path
      */
     private String gainSavePath() {
 
         return ServletActionContext.getServletContext().getRealPath("/")
-                + "\\upload\\articleimage\\"; // 服务器上面的真实路径
+                + "/upload/" + dir + "/"; // 服务器上面的真实路径
 
     }
 
     /**
      * 获取图片储存名称
      *
-     * @return
+     * @return fileName
      */
     private String gainFileName() {
         String fileName = "";
@@ -120,30 +159,29 @@ public class FileUploadAction {
     /**
      * 获取文件的后缀名 转小写
      *
-     * @return
+     * @return ext
      */
     private String gainExt() {
         return imgFileFileName.substring(imgFileFileName.lastIndexOf(".") + 1)
                 .toLowerCase();
     }
 
-    private boolean validateExt(String ext) {
-        // 定义可上传文件的 类型
-        List<String> fileTypes = new ArrayList<String>();
-        // 指定上传类型
-        fileTypes.add("jpg");
-        fileTypes.add("jpeg");
-        fileTypes.add("bmp");
-        fileTypes.add("gif");
-        fileTypes.add("png");
-        return fileTypes.contains(ext) ? true : false;
+    private boolean validateExt(String fileExt) {
+
+        //定义允许上传的文件扩展名
+        HashMap<String, String> extMap = new HashMap<String, String>();
+        extMap.put("image", "gif,jpg,jpeg,png,bmp");
+        extMap.put("flash", "swf,flv");
+        extMap.put("media", "swf,flv,mp3,wav,wma,wmv,mid,avi,mpg,asf,rm,rmvb");
+        extMap.put("file", "doc,docx,xls,xlsx,ppt,htm,html,txt,zip,rar,gz,bz2");
+
+        return Arrays.<String>asList(extMap.get(dir).split(",")).contains(fileExt);
     }
 
     /**
      * 返回Json
      *
      * @param message
-     * @return
      */
     //这里封装好json数据error表示错误，message 表示错误信息。
     private void getError(String message) {

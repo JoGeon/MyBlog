@@ -21,12 +21,12 @@ public class FileUploadServiceImpl implements FileUploadService {
     FileUploadDAO fileUploadDAO;
 
     @Override
-    public void saveImage(FileUpload fileUpload) {
+    public void saveUploadFile(FileUpload fileUpload) {
         fileUploadDAO.saveFile(fileUpload);
     }
 
     @Override
-    public FileUpload findImageByName(String hql, Object... params) {
+    public FileUpload findFileByName(String hql, Object... params) {
         return fileUploadDAO.findFileByName(hql, params);
     }
 }

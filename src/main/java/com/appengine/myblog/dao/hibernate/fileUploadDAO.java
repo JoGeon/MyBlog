@@ -20,7 +20,7 @@ public class FileUploadDAO extends HibernateDaoSupport<FileUpload> {
     }
 
     public FileUpload findFileByName(String hql, Object... params) {
-        return  (FileUpload)find(hql, params);
+        return  findByParams(hql, params);
     }
 
 }

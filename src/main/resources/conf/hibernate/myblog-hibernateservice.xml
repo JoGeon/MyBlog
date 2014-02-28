@@ -45,4 +45,11 @@
     <bean id="cacheManager"
           class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"
           p:configLocation="classpath:ehcache.xml"/-->
+
+     <bean id="blogConstant" class="com.appengine.myblog.util.BlogConstant">
+         <property name="saveFlieTODB" value="${constant.savefiletodb}"/>
+     </bean>
+
+    <bean id="cacheContextBeanPostProcessor" class="com.appengine.myblog.util.CacheContextBeanPostProcessor"/>
+
 </beans>

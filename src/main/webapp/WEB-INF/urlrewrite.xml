@@ -120,5 +120,10 @@
         <to>$1.action</to>
     </rule>
 
+    <rule>
+        <from>^/fileupload/(\w+)/([0-9]+.\w+)$</from>
+        <to>/fileupload/$1/$2.action</to>
+    </rule>
+
 </urlrewrite>
 

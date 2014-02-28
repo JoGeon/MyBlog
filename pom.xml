@@ -386,9 +386,9 @@
                         <port>8088</port>
                     </httpConnector>
                     <scanIntervalSeconds>5</scanIntervalSeconds>
-                    <webAppConfig>
+                    <!--webAppConfig>
                         <contextPath>/${project.build.finalName}</contextPath>
-                    </webAppConfig>
+                    </webAppConfig-->
                 </configuration>
             </plugin>
 
